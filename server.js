@@ -23,6 +23,9 @@ app.use(session({ name: 'dating_app', secret: 'dating' }));
 // app.use(passport.session());
 app.use(methodOverride('_method'));
 
+var usersController = require('./controllers/usersController');
+app.use('/users', userController);
+
 // CONNECT & LISTEN
 mongoose.connection.once('open', function() {
   app.listen(port, function() {
