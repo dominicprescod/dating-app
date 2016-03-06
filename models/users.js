@@ -1,6 +1,6 @@
 // REQUIREMENTS
 var mongoose = require('mongoose');
-// var blogSchema = require('./blogs').schema;
+var likeSchema = require('./likes').schema;
 // var bcrypt = require('bcrypt-nodejs');
 
 // SCHEMA
