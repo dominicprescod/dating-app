@@ -25,12 +25,22 @@ app.use(methodOverride('_method'));
 
 var usersController = require('./controllers/usersController');
 app.use('/users', usersController);
+
 // creating likes Seed Data
 var likesSeedController = require('./controllers/likesSeedController');
 app.use('/likesseed', likesSeedController);
+
 // Creating user Seed data
 var userSeedController = require('./controllers/userSeedController');
 app.use('/userseed', userSeedController);
+
+
+// makes a variable login available in your templates.
+app.use(function(req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  next();
+});
+
 
 // CONNECT & LISTEN
 mongoose.connection.once('open', function() {
