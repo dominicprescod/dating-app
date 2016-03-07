@@ -25,9 +25,12 @@ app.use(methodOverride('_method'));
 
 var usersController = require('./controllers/usersController');
 app.use('/users', usersController);
-
+// creating likes Seed Data
 var likesSeedController = require('./controllers/likesSeedController');
 app.use('/likesseed', likesSeedController);
+// Creating user Seed data
+var userSeedController = require('./controllers/userSeedController');
+app.use('/userseed', userSeedController);
 
 // CONNECT & LISTEN
 mongoose.connection.once('open', function() {

@@ -9,7 +9,8 @@ var userSchema = mongoose.Schema({
 	password: String,
   firstName: String,
   lastName: String,
-  age: Date,
+  age: Number,
+	gender: String,
   about: String,
 	likes: [likeSchema]
 });
