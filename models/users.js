@@ -1,7 +1,7 @@
 // REQUIREMENTS
 var mongoose = require('mongoose');
 var likeSchema = require('./likes').schema;
-// var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt-nodejs');
 
 // SCHEMA
 var userSchema = mongoose.Schema({
@@ -16,12 +16,12 @@ var userSchema = mongoose.Schema({
 });
 
 // PASSPORT
-// userSchema.methods.generateHash = function(password) {
-// 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-// };
-// userSchema.methods.validPassword = function(password) {
-// 	return bcrypt.compareSync(password, this.password);
-// };
+userSchema.methods.generateHash = function(password) {
+	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+userSchema.methods.validPassword = function(password) {
+	return bcrypt.compareSync(password, this.password);
+};
 
 // EXPORT
 module.exports = mongoose.model('User', userSchema);

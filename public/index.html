@@ -12,5 +12,20 @@
         <li ng-class='{{likes.name}}'>{{likes.name}}</li>
       </ul>
     </section>
+    <!--Rendering the users for testing  -->
+    <section ng-controller="userController as use">
+      <ul>
+        <li ng-repeat="ppl in use.users">
+          {{ppl.id}}
+          {{ppl.firstName}}
+          {{ppl.lastName}}
+          {{ppl.email}}
+          {{ppl.password}}
+          {{ppl.age}}
+          {{ppl.about}}
+        </li>
+      </ul>
+
+    </section>
   </body>
 </html>

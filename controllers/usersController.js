@@ -24,6 +24,13 @@ router.get('/likes', function(req, res){
 	});
 });
 
+// GETTING users JSON data from the database
+router.get('/',function(req,res){
+  User.find(function(err,data){
+      res.send(data);
+  });
+});
+
 
 // EXPORT
 module.exports = router;

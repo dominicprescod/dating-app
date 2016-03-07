@@ -9,7 +9,7 @@ var express           = require('express'),
     port              = process.env.PORT || 3000;
 
 
-// require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/dating_app';
 mongoose.connect(mongoUri);
@@ -19,8 +19,8 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({ name: 'dating_app', secret: 'dating' }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(methodOverride('_method'));
 
 var usersController = require('./controllers/usersController');
