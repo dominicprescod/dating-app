@@ -24,7 +24,10 @@ app.use(session({ name: 'dating_app', secret: 'dating' }));
 app.use(methodOverride('_method'));
 
 var usersController = require('./controllers/usersController');
-app.use('/users', userController);
+app.use('/users', usersController);
+
+var likesSeedController = require('./controllers/likesSeedController');
+app.use('/likesseed', likesSeedController);
 
 // CONNECT & LISTEN
 mongoose.connection.once('open', function() {

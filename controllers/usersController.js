@@ -9,10 +9,18 @@ var User    = require('../models/users'),
     Message = require('../models/messages');
 
 // INDEX
-router.get('/', redirectUser, function(req, res) {
+router.get('/', function(req, res) {
 	res.locals.login = req.isAuthenticated();
 	User.find(function(err, users) {
 		res.send(users);
+	});
+});
+
+// GETTING LIKES CATEGORIES
+router.get('/likes', function(req, res){
+  Like.find(function(err, data) {
+    // console.log(data)
+    res.send(data);
 	});
 });
 
