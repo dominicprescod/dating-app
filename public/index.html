@@ -34,7 +34,7 @@
     <section ng-view></section>
     <section ng-controller='likesController as ctrl'>
       <ul ng-repeat='likes in ctrl.likes'>
-        <li ng-class='{{likes.name}}'>{{likes.name}}</li>
+        <li>{{likes.name}}</li>
       </ul>
     </section>
     <!--Rendering the users for testing  -->

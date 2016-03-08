@@ -5,22 +5,12 @@ app.controller("userShow",["$http","$routeParams",function($http, $routeParams){
     $http({
       method: "GET",
       url: "users/"+$routeParams.id+"/json"
-    }).then(function(response){
-      // console.log(response.data);
+    }).then(
+    function(response){
       controller.current = response.data;
     });
 }]);
 
-
-
-// app.controller("logoutController",["$http",function($http){
-//       $http({
-//         method: "GET",
-//         url:"/users/logout"
-//       }).then(function(response){
-//         console.log("logged out baby");
-//       });
-// }]);
 
 app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
   $locationProvider.html5Mode({enabled:true});
@@ -28,10 +18,6 @@ app.config(["$routeProvider","$locationProvider", function($routeProvider,$locat
     templateUrl: "partials/show.html",
     controller: "userShow",
     controllerAs: "use"
-  }).when("/users/logout",{
-    templateUrl: "partials/show.html",
-    controller:"logoutController",
-    controllerAs:"logout"
   });
 }]);
 
@@ -48,7 +34,6 @@ this.logout = function(){
     method:"GET",
     url: "/users/logout"
   }).then(function(response){
-    $location.url('/');
   });
 };
   // =======================================
