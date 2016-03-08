@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <title></title>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js' charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
     <script src='js/app.js' charset="utf-8"></script>
+    <base href="/">
   </head>
   <body ng-controller="bodyController as body">
+    <a href="/" ng-click="body.logout()">Logout</a>
     <div id="login-signUp">
       <h1>Login</h1>
       <form ng-submit="body.login()">
@@ -28,6 +31,7 @@
       </form>
 
     </div>
+    <section ng-view></section>
     <section ng-controller='likesController as ctrl'>
       <ul ng-repeat='likes in ctrl.likes'>
         <li ng-class='{{likes.name}}'>{{likes.name}}</li>
@@ -37,13 +41,14 @@
     <section ng-controller="userController as use">
       <ul>
         <li ng-repeat="ppl in use.users">
-          {{ppl.id}}
-          {{ppl.firstName}}
-          {{ppl.lastName}}
-          {{ppl.email}}
-          {{ppl.password}}
-          {{ppl.age}}
-          {{ppl.about}}
+          <a href="/users/{{ppl._id}}">show!</a>
+          ID: {{ppl._id}}
+          First Name: {{ppl.firstName}}
+          Last Name: {{ppl.lastName}}
+          Email: {{ppl.email}}
+          Password:  {{ppl.password}}
+          Age: {{ppl.age}}
+          About: {{ppl.about}}
         </li>
       </ul>
 

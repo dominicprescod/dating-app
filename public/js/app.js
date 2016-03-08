@@ -1,10 +1,56 @@
-var app = angular.module('datingApp', []);
+var app = angular.module('datingApp', ["ngRoute"]);
+
+app.controller("userShow",["$http","$routeParams",function($http, $routeParams){
+    var controller = this;
+    $http({
+      method: "GET",
+      url: "users/"+$routeParams.id+"/json"
+    }).then(function(response){
+      // console.log(response.data);
+      controller.current = response.data;
+    });
+}]);
+
+
+
+// app.controller("logoutController",["$http",function($http){
+//       $http({
+//         method: "GET",
+//         url:"/users/logout"
+//       }).then(function(response){
+//         console.log("logged out baby");
+//       });
+// }]);
+
+app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
+  $locationProvider.html5Mode({enabled:true});
+  $routeProvider.when('/users/:id',{
+    templateUrl: "partials/show.html",
+    controller: "userShow",
+    controllerAs: "use"
+  }).when("/users/logout",{
+    templateUrl: "partials/show.html",
+    controller:"logoutController",
+    controllerAs:"logout"
+  });
+}]);
+
+
 
 // testing the login with passport & angular
 app.controller('bodyController',["$http",function($http){
   var controller = this;
   this.newUser = {};
   this.signIn = {};
+// =======================================
+this.logout = function(){
+  $http({
+    method:"GET",
+    url: "/users/logout"
+  }).then(function(response){
+    $location.url('/');
+  });
+};
   // =======================================
     this.login = function(){
         $http({

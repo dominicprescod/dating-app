@@ -8,6 +8,16 @@ var User    = require('../models/users'),
     Like    = require('../models/likes'),
     Message = require('../models/messages');
 
+
+
+// logging out from current session
+router.get('/logout',function(req,res){
+      // console.log("user has been logged out");
+      // console.log(req.user);
+      req.logout();
+      res.redirect('/');
+});
+
 // INDEX
 router.get('/', function(req, res) {
 	User.find(function(err, users) {
@@ -45,6 +55,13 @@ router.post('/login',passport.authenticate('local-login',{
   });
 
 
+// user SHow data
+router.get('/:id/json', isLoggedIn, function(req,res){
+    User.findById(req.params.id,function(err,data){
+      res.send(data);
+    });
+});
+
 // ==================================================
  // trying to add a hash to the users passwords
  // - WORKED all user password from seed data are now hashed
@@ -66,10 +83,11 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()){
       console.log("logged in");
       return next();
-    }
+    } else{
     console.log('not logged in');
     // if they aren't redirect them to the home page
-    res.redirect('/stuffy');
+    res.redirect('/');
+    }
 }
 
 
