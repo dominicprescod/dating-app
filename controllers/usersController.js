@@ -28,10 +28,18 @@ router.get('/', function(req, res) {
 // GETTING LIKES CATEGORIES
 router.get('/likes', function(req, res){
   Like.find(function(err, data) {
-    // console.log(data)
+    // console.log(req.user)
     res.send(data);
 	});
 });
+
+// POST
+router.put('/:id', function(req, res){
+  console.log(req.user.likes)
+  User.findById(req.params.id, req.body, function(err, user){
+    res.send(req.user)
+  })
+})
 
 // // GETTING users JSON data from the database
 // router.get('/',function(req,res){

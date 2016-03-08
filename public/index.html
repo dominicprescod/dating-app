@@ -32,9 +32,9 @@
 
     </div>
     <section ng-view></section>
-    <section ng-controller='likesController as ctrl'>
-      <ul ng-repeat='likes in ctrl.likes'>
-        <li>{{likes.name}}</li>
+    <section ng-controller='likesController as likesCtrl'>
+      <ul ng-repeat='likes in likesCtrl.likes'>
+        <li id='{{likes.name}}' ng-click="likesCtrl.addLike(likes.name); hideLike = ! hideLike" ng-hide='hideLike'>{{likes.name}}</li>
       </ul>
     </section>
     <!--Rendering the users for testing  -->

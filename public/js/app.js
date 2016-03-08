@@ -1,4 +1,5 @@
 var app = angular.module('datingApp', ["ngRoute"]);
+// var array = [];
 
 app.controller("userShow",["$http","$routeParams",function($http, $routeParams){
     var controller = this;
@@ -11,6 +12,22 @@ app.controller("userShow",["$http","$routeParams",function($http, $routeParams){
     });
 }]);
 
+// rendering likes on the page ---> testing that the data shows up
+app.controller('likesController', ['$http', '$routeParams', function($http, $routeParams){
+
+  var controller = this;
+  $http({ method: 'GET', url: '/users/likes'}).then(function(response){
+    controller.likes = response.data;
+  });
+
+  this.addLike = function(category){
+    console.log(category)
+    $http({ method: 'PUT', url:"users/"+ $routeParams.id, data:{likes: category}}).then(function(response){
+      console.log(response.data)
+    })
+  }
+
+}]);
 
 app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
   $locationProvider.html5Mode({enabled:true});
@@ -61,13 +78,6 @@ this.logout = function(){
     };
 }]);
 
-// rendering likes on the page ---> testing that the data shows up
-app.controller('likesController', ['$http', function($http){
-  var controller = this;
-  $http({ method: 'GET', url: '/users/likes'}).then(function(response){
-    controller.likes = response.data;
-  });
-}]);
 
 // rendering users on the page --> confirming that they show up
 app.controller('userController', ["$http",function($http) {
