@@ -60,6 +60,14 @@ app.config(["$routeProvider","$locationProvider", function($routeProvider,$locat
   });
 }]);
 
+app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
+  $locationProvider.html5Mode({enabled:true});
+  $routeProvider.when('/users/:id/new',{
+    templateUrl: "partials/categories.html",
+    controller: "likesController",
+    controllerAs: "likesCtrl"
+  });
+}]);
 
 // app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
 //   $locationProvider.html5Mode({enabled:true});
@@ -112,7 +120,8 @@ this.logout = function(){
         id = response.data._id
         controller.newUser = {};
       }).then(function(){
-        $location.path("users/" + id)
+        $location.path("users/" + id +'/new')
+        // $location.path("users/" + id)
       })
     };
 }]);
