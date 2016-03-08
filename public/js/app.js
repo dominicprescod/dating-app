@@ -72,5 +72,10 @@ app.controller('likesController', ['$http', function($http){
 // rendering users on the page --> confirming that they show up
 app.controller('userController', ["$http",function($http) {
     var controller = this;
-    $http({method:"GET",url: "/users"}).then(function(response){controller.users = response.data;});
+    $http({
+      method:"GET",
+      url: "/users"
+    }).then(function(response){
+      controller.users = response.data;
+    });
 }]);
