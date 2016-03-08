@@ -1,0 +1,20 @@
+<div id="login-signUp">
+  <h1>Login</h1>
+  <form ng-submit="body.login()">
+    <input type="text" placeholder="Email" ng-model="body.signIn.email">
+    <input type="password" placeholder="Password" ng-model="body.signIn.password">
+    <input type="submit" value="Login">
+  </form>
+  <hr>
+  <h1>Register</h1>
+  <form ng-submit="body.register()">
+    <input type="text" placeholder="First Name" ng-model="body.newUser.firstName">
+    <input type="text" placeholder="Last Name" ng-model="body.newUser.lastName">
+    <input type="text" placeholder="Email" ng-model="body.newUser.email">
+    <input type="password" placeholder="Password" ng-model="body.newUser.password">
+    <input type="text" placeholder="Male/Female" ng-model="body.newUser.gender">
+    <input type="text" placeholder="Age" ng-model="body.newUser.age">
+    <input type="text" placeholder="About" ng-model="body.newUser.about">
+    <input type="submit" value="Register">
+  </form>
+</div>

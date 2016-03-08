@@ -1,5 +1,4 @@
 var app = angular.module('datingApp', ["ngRoute"]);
-// var array = [];
 
 app.controller("userShow",["$http","$routeParams",function($http, $routeParams){
     var controller = this;
@@ -44,6 +43,16 @@ app.controller('likesController', ['$http', '$routeParams', function($http, $rou
 
 app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
   $locationProvider.html5Mode({enabled:true});
+  $routeProvider.when('/',{
+    templateUrl: "partials/login.html",
+    controller: "bodyController",
+    controllerAs: "body"
+  });
+}]);
+
+
+app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
+  $locationProvider.html5Mode({enabled:true});
   $routeProvider.when('/users/:id',{
     templateUrl: "partials/show.html",
     controller: "userShow",
@@ -52,10 +61,20 @@ app.config(["$routeProvider","$locationProvider", function($routeProvider,$locat
 }]);
 
 
+// app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
+//   $locationProvider.html5Mode({enabled:true});
+//   $routeProvider.when('/users/:id',{
+//     templateUrl: "partials/person.html",
+//     controller: "userShow",
+//     controllerAs: "use"
+//   });
+// }]);
+
 
 // testing the login with passport & angular
-app.controller('bodyController',["$http",function($http){
+app.controller('bodyController',["$http", '$location', '$routeParams', function($http, $location, $routeParams){
   var controller = this;
+  var id
   this.newUser = {};
   this.signIn = {};
 // =======================================
@@ -66,7 +85,8 @@ this.logout = function(){
   }).then(function(response){
   });
 };
-  // =======================================
+  // ======================================
+
     this.login = function(){
         $http({
           method: "POST",
@@ -74,8 +94,11 @@ this.logout = function(){
           data: this.signIn
         }).then(function(response){
           console.log(response.data);
+          id = response.data._id
           controller.signIn = {};
-        });
+        }).then(function(){
+          $location.path("users/" + id)
+        })
     };
 
     // =======================================
@@ -86,8 +109,11 @@ this.logout = function(){
         data: this.newUser
       }).then(function(response){
         console.log(response.data);
+        id = response.data._id
         controller.newUser = {};
-      });
+      }).then(function(){
+        $location.path("users/" + id)
+      })
     };
 }]);
 

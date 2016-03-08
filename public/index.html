@@ -8,52 +8,9 @@
     <script src='js/app.js' charset="utf-8"></script>
     <base href="/">
   </head>
-  <body ng-controller="bodyController as body">
-    <a href="/" ng-click="body.logout()">Logout</a>
-    <div id="login-signUp">
-      <h1>Login</h1>
-      <form ng-submit="body.login()">
-        <input type="text" placeholder="Email" ng-model="body.signIn.email">
-        <input type="password" placeholder="Password" ng-model="body.signIn.password">
-        <input type="submit" value="Login">
-      </form>
-      <hr>
-      <h1>Register</h1>
-      <form ng-submit="body.register()">
-        <input type="text" placeholder="First Name" ng-model="body.newUser.firstName">
-        <input type="text" placeholder="Last Name" ng-model="body.newUser.lastName">
-        <input type="text" placeholder="Email" ng-model="body.newUser.email">
-        <input type="password" placeholder="Password" ng-model="body.newUser.password">
-        <input type="text" placeholder="Male/Female" ng-model="body.newUser.gender">
-        <input type="text" placeholder="Age" ng-model="body.newUser.age">
-        <input type="text" placeholder="About" ng-model="body.newUser.about">
-        <input type="submit" value="Register">
-      </form>
+  <body>
 
-    </div>
     <section ng-view></section>
-    <section ng-controller='likesController as likesCtrl'>
-      <ul ng-repeat='likes in likesCtrl.likes'>
-        <li id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike'>{{likes.name}}</li>
-        <!-- Changed above to send the object instead of the "name" of the object -> {{likes.name}} -->
-      </ul>
-    </section>
     <!--Rendering the users for testing  -->
-    <section ng-controller="userController as use">
-      <ul>
-        <li ng-repeat="ppl in use.users">
-          <!--Need to add an if statement if the user is logged in to make the a Tag available  -->
-          <a href="/users/{{ppl._id}}">show!</a>
-          ID: {{ppl._id}}
-          First Name: {{ppl.firstName}}
-          Last Name: {{ppl.lastName}}
-          Email: {{ppl.email}}
-          Password:  {{ppl.password}}
-          Age: {{ppl.age}}
-          About: {{ppl.about}}
-        </li>
-      </ul>
-
-    </section>
   </body>
 </html>
