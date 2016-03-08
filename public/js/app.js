@@ -1,7 +1,10 @@
 var app = angular.module('datingApp', ["ngRoute"]);
+var done;
 
-app.controller("userShow",["$http","$routeParams",function($http, $routeParams){
+app.controller("userShow",["$http","$routeParams", "$location", function($http, $routeParams, $location){
     var controller = this;
+    var id
+
     $http({
       method: "GET",
       url: "users/"+$routeParams.id+"/json"
@@ -9,10 +12,13 @@ app.controller("userShow",["$http","$routeParams",function($http, $routeParams){
     function(response){
       controller.current = response.data;
     });
+
+
+
 }]);
 
 // rendering likes on the page ---> testing that the data shows up
-app.controller('likesController', ['$http', '$routeParams', function($http, $routeParams){
+app.controller('likesController', ['$http', '$routeParams', '$location', function($http, $routeParams, $location){
 
   var controller = this;
   $http({ method: 'GET', url: '/users/likes'}).then(function(response){
@@ -29,6 +35,11 @@ app.controller('likesController', ['$http', '$routeParams', function($http, $rou
     }).then(function(response){
       console.log(response.data);
     });
+  };
+
+  this.done = function(){
+    console.log('something')
+    $location.path(done)
   };
 // =======
 // Merge Conflict Tuesday Mar 8th 11:04am changing put/post to add likes
@@ -120,6 +131,7 @@ this.logout = function(){
         id = response.data._id
         controller.newUser = {};
       }).then(function(){
+        done = "users/" + id;
         $location.path("users/" + id +'/new')
         // $location.path("users/" + id)
       })
