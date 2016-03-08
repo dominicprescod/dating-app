@@ -28,11 +28,12 @@ router.get('/', function(req, res) {
 // GETTING LIKES CATEGORIES
 router.get('/likes', function(req, res){
   Like.find(function(err, data) {
-    // console.log(req.user)
+    // console.log(data)
     res.send(data);
 	});
 });
 
+// <<<<<<< HEAD
 // POST - PUT
 router.put('/:id', function(req, res){
   // console.log(req.user.likes)
@@ -45,6 +46,14 @@ router.put('/:id', function(req, res){
     // res.send(req.user);
   });
 });
+// =======
+// Merge Conflict - Tuesday Mar 8th 11:03am changing router put/post for likes
+// router.post('/:id', function(req, res){
+//   User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+//     res.send(req.body)
+//   })
+// })
+// >>>>>>> 44ea38e2f5aeae5a8607b8287279d02b502b0f25
 
 // // GETTING users JSON data from the database
 // router.get('/',function(req,res){

@@ -21,6 +21,7 @@ app.controller('likesController', ['$http', '$routeParams', function($http, $rou
   });
 
   this.addLike = function(category){
+// <<<<<<< HEAD
     console.log(category);
     $http({
       method: 'PUT',
@@ -30,6 +31,14 @@ app.controller('likesController', ['$http', '$routeParams', function($http, $rou
       console.log(response.data);
     });
   };
+// =======
+// Merge Conflict Tuesday Mar 8th 11:04am changing put/post to add likes
+//     console.log(category)
+//     $http({ method: 'POST', url:"users/"+ $routeParams.id, data:{likes: category}}).then(function(response){
+//       console.log(response.data)
+//     })
+//   }
+// >>>>>>> 44ea38e2f5aeae5a8607b8287279d02b502b0f25
 
 }]);
 
