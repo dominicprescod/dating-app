@@ -21,7 +21,7 @@ app.controller('likesController', ['$http', '$routeParams', function($http, $rou
   });
 
   this.addLike = function(category){
-// <<<<<<< HEAD
+
     console.log(category);
     $http({
       method: 'PUT',
@@ -38,7 +38,7 @@ app.controller('likesController', ['$http', '$routeParams', function($http, $rou
 //       console.log(response.data)
 //     })
 //   }
-// >>>>>>> 44ea38e2f5aeae5a8607b8287279d02b502b0f25
+//44ea38e2f5aeae5a8607b8287279d02b502b0f25
 
 }]);
 

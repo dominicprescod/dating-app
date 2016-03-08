@@ -33,7 +33,7 @@ router.get('/likes', function(req, res){
 	});
 });
 
-// <<<<<<< HEAD
+
 // POST - PUT
 router.put('/:id', function(req, res){
   // console.log(req.user.likes)
@@ -53,7 +53,7 @@ router.put('/:id', function(req, res){
 //     res.send(req.body)
 //   })
 // })
-// >>>>>>> 44ea38e2f5aeae5a8607b8287279d02b502b0f25
+//44ea38e2f5aeae5a8607b8287279d02b502b0f25
 
 // // GETTING users JSON data from the database
 // router.get('/',function(req,res){
