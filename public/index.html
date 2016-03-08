@@ -34,7 +34,8 @@
     <section ng-view></section>
     <section ng-controller='likesController as likesCtrl'>
       <ul ng-repeat='likes in likesCtrl.likes'>
-        <li id='{{likes.name}}' ng-click="likesCtrl.addLike(likes.name); hideLike = ! hideLike" ng-hide='hideLike'>{{likes.name}}</li>
+        <li id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike'>{{likes.name}}</li>
+        <!-- Changed above to send the object instead of the "name" of the object -> {{likes.name}} -->
       </ul>
     </section>
     <!--Rendering the users for testing  -->

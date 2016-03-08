@@ -33,13 +33,18 @@ router.get('/likes', function(req, res){
 	});
 });
 
-// POST
+// POST - PUT
 router.put('/:id', function(req, res){
-  console.log(req.user.likes)
-  User.findById(req.params.id, req.body, function(err, user){
-    res.send(req.user)
-  })
-})
+  // console.log(req.user.likes)
+  console.log(req.body+" this is the like object");
+  User.findById(req.params.id, function(err, user){
+    user.likes.push(req.body);
+    user.save(function(err,userWithLikes){
+      res.send(userWithLikes);
+    });
+    // res.send(req.user);
+  });
+});
 
 // // GETTING users JSON data from the database
 // router.get('/',function(req,res){

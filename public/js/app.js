@@ -21,11 +21,15 @@ app.controller('likesController', ['$http', '$routeParams', function($http, $rou
   });
 
   this.addLike = function(category){
-    console.log(category)
-    $http({ method: 'PUT', url:"users/"+ $routeParams.id, data:{likes: category}}).then(function(response){
-      console.log(response.data)
-    })
-  }
+    console.log(category);
+    $http({
+      method: 'PUT',
+      url:"users/"+ $routeParams.id,
+      data: category
+    }).then(function(response){
+      console.log(response.data);
+    });
+  };
 
 }]);
 
