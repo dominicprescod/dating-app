@@ -1,5 +1,5 @@
 <div class='animated fadeIn' id='show'>
-  <img class='avatar' src='http://41.media.tumblr.com/98d15c77b00b8cc2a1ca502da3931ba6/tumblr_ni3ftaaDe71qhqm30o4_1280.jpg'>
+  <img class='avatar' ng-src={{use.current.imglink}}>
   <br><br>
   <h1>{{use.current.firstName}} {{use.current.lastName}}</h1>
   <br>
@@ -8,20 +8,32 @@
   <h4>Gender: {{use.current.gender}}</h4>
   <br>
   <h4>Info: {{use.current.about}}</h4>
+
+  <br><br><br><br>
+  <ul ng-repeat='like in use.current.likes'>
+    <li class='likeslist' ng-click='use.deleteLike(like)'>{{like.name}}</li>
+  </ul>
+
   <br><br><br><br>
   <div ng-controller='bodyController as body'>
      <a href="/" ng-click="body.logout()" ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGOUT</a>
   </div>
 </div>
+
+<section id='categories' ng-controller='likesController as likesCtrl'>
+  <ul ng-repeat='likes in likesCtrl.likes'>
+    <li class='likeslist' id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike' ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">{{likes.name}}</li>
+  </ul>
+</section>
 <!-- <button ng-click='use.star()'>click me</button> -->
 <!-- Checking the filter with Angular -->
-<hr>
+<!-- <hr>
 <section ng-controller="userController as use">
   <input type="text" placeholder="filter" ng-model="searchBox">
   <ul>
     <li ng-repeat="ppl in use.users.sort() |filter: searchBox">
-      <!--Need to add an if statement if the user is logged in to make the a Tag available  -->
-      <a href="/users/{{ppl._id}}">show!</a>
+      <!Need to add an if statement if the user is logged in to make the a Tag available  -->
+      <!-- <a href="/users/{{ppl._id}}">show!</a>
       ID: {{ppl._id}}
       First Name: {{ppl.firstName}}
       Last Name: {{ppl.lastName}}
@@ -30,7 +42,7 @@
       Age: {{ppl.age}}
       About: {{ppl.about}}
     </li>
-  </ul>
+  </ul> -->
 
-</section>
->>>>>>> tuesday-dom
+<!-- </section>
+>>>>>>> tuesday-dom -->

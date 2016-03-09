@@ -1,6 +1,6 @@
 <section id='categories'>
   <ul ng-repeat='likes in likesCtrl.likes'>
-    <li id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike' ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">{{likes.name}}</li>
+    <li class='likeslist' id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike' ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">{{likes.name}}</li>
 
     <!-- Changed above to send the object instead of the "name" of the object -> {{likes.name}} -->
   </ul>

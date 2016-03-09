@@ -13,13 +13,24 @@ app.controller("userShow",["$http","$routeParams", "$location", function($http, 
     }).then(
     function(response){
       controller.current = response.data;
-      userLikesArray = controller.current;
     });
 
-    this.star = function(){
-      console.log('test')
-      console.log(controller.current.likes[0].name)
+    // this.star = function(){
+    //   console.log('test')
+    //   console.log(controller.current.likes[0].name)
+    // }
+
+    this.deleteLike = function(category){
+      console.log(category._id);
+      $http({
+        method: 'POST',
+        url: 'users/' + $routeParams.id,
+        data: category
+      }).then(function(response){
+        console.log(category._id)
+      })
     }
+
 
 }]);
 
@@ -142,12 +153,16 @@ this.logout = function(){
         url: "/users/register",
         data: this.newUser
       }).then(function(response){
-        console.log(response.data);
+        // console.log(response.data);
         id = response.data._id;
         controller.newUser = {};
       }).then(function(){
         done = "users/" + id;
-        $location.path("users/" + id +'/new');
+        if(id === undefined){
+        $location.path("/");
+      } else {
+          $location.path("users/" + id +'/new');
+      }
         // $location.path("users/" + id)
       });
     };
@@ -155,15 +170,15 @@ this.logout = function(){
 
 
 // rendering users on the page --> confirming that they show up
-app.controller('userController', ["$http",function($http) {
-    var controller = this;
-    $http({
-      method:"GET",
-      url: "/users"
-    }).then(function(response){
-      angular.forEach(response.data,function(i){
-        console.log(i.likes);
-      });
-      controller.users = response.data;
-    });
-}]);
+// app.controller('userController', ["$http",function($http) {
+//     var controller = this;
+//     $http({
+//       method:"GET",
+//       url: "/users"
+//     }).then(function(response){
+//       angular.forEach(response.data,function(i){
+//         // console.log(i.likes);
+//       });
+//       controller.users = response.data;
+//     });
+// }]);

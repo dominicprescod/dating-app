@@ -84,6 +84,28 @@ router.get('/:id/json', isLoggedIn, function(req,res){
     });
 });
 
+// getting user likesArray
+router.post('/:id', function(req, res){
+  console.log(req.body)
+  console.log('======================================')
+  User.findById(req.params.id, function(err, data){
+    console.log(data);
+    data.likes.forEach(function(i){
+      if(i.name === req.body.name){
+        console.log(i);
+        var num = data.likes.indexOf(i);
+        console.log(num);
+        data.likes.splice(num,1);
+      }
+    });
+  //   for(var i = 0; i < data.likes.length; i++){
+  //
+  // }
+  data.save(function(){});
+    })
+})
+
+
 // ==================================================
  // trying to add a hash to the users passwords
  // - WORKED all user password from seed data are now hashed

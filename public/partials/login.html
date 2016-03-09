@@ -16,7 +16,15 @@
 
   <div id='signup'>
     <h1 ng-click='showMe2 =! showMe2' class='title' ng-class="{'animated flash': animate2}" ng-mouseover="animate2 =! animate2" ng-mouseleave="animate2 =! animate2">GET STARTED</h1>
-      <form ng-submit="body.register()" ng-show='showMe2' class='animated zoomInDown'>
+      <div id='container' ng-show='showMe2' class='animated zoomInDown'>
+      <form id="up-form">
+        <input class='uploadButton' type="file">
+        <br>
+        <button class='button' type="submit">Upload Photo</button>
+      </form>
+      <form ng-submit="body.register()">
+        <input class='login' id='ospry' type="text" placeholder="Please Wait......" ng-model="body.newUser.imglink">
+        <div class='line'></div>
         <input class='login' type="text" placeholder="First Name" ng-model="body.newUser.firstName">
         <div class='line'></div>
         <input class='login' type="text" placeholder="Last Name" ng-model="body.newUser.lastName">
@@ -33,5 +41,35 @@
         <div class='line'></div><br>
         <input class='login, button' type="submit" value="Register" ng-click='hideMe =! hideMe'>
       </form>
-  </div>
-</div>
+      <div>
+      </div>
+
+<!-- API SCRIPT TO UPLOAD IMAGES -->
+  <script>
+  var ospry = new Ospry('pk-test-mfmyvvhj3zhzgvb3xs85zqhp');
+
+  var onUpload = function(err, metadata) {
+    ospry.get({
+      url: metadata.url,
+      maxHeight: 800,
+      maxWidth: 500,
+      imageReady: function(err, metadata) {
+        // Convert metadata (an object) into a string src link using .src
+        var obj = metadata.src
+        console.log('test')
+        console.log(obj)
+        var input = $('#ospry')
+        $('#ospry').val(obj);
+        angular.element($('#ospry')).triggerHandler('input')
+      },
+    });
+  };
+
+  $('#up-form').submit(function(e) {
+    e.preventDefault();
+    ospry.up({
+      form: this,
+      imageReady: onUpload,
+    });
+  });
+  </script>
