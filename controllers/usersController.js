@@ -25,6 +25,20 @@ router.get('/', function(req, res) {
 	});
 });
 
+ // Finding according to similar LIKES
+ router.post("/:id/bylikes",function(req,res){
+   var cat = [];
+  //  console.log("hey");
+   for(var i = 0; i < req.body.length; i++){
+     cat.push(req.body[i].name);
+   }
+  //  console.log(cat+" this is cat array");
+   User.find({ likes: { '$elemMatch': { name: {$in:cat }} } },function(err,data){
+    //  console.log(data);
+        res.send(data);
+   });
+ });
+
 // GETTING LIKES CATEGORIES
 router.get('/likes', function(req, res){
   Like.find(function(err, data) {
