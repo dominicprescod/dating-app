@@ -20,11 +20,11 @@
 <!-- Checking the filter with Angular -->
 <br>
 <hr>
-<section ng-controller="userController as use">
+<section>
   <input type="text" placeholder="filter" ng-model="searchBox">
   <br>
   <ul>
-    <li ng-repeat="ppl in use.users.sort() |filter: searchBox">
+    <li ng-repeat="ppl in use.matches.sort() |filter: searchBox">
       <!--Need to add an if statement if the user is logged in to make the a Tag available  -->
       <a href="/users/{{ppl._id}}">show!</a>
       ID: {{ppl._id}}

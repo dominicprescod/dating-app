@@ -1,25 +1,33 @@
 var app = angular.module('datingApp', ["ngRoute"]);
-var done;
-var likesArray;
-var userLikesArray;
+// var done;
+// var likesArray;
+// var userLikesArray;
 
 app.controller("userShow",["$http","$routeParams", "$location", function($http, $routeParams, $location){
     var controller = this;
-    var id;
-
+    // var id;
+    // this.myLikes = null;
     $http({
       method: "GET",
       url: "users/"+$routeParams.id+"/json"
     }).then(
     function(response){
       controller.current = response.data;
-      userLikesArray = controller.current;
+      // userLikesArray = controller.current;
+      $http({
+         method: "POST",
+         url: "users/"+$routeParams.id+"/bylikes",
+         data: response.data.likes
+      }).then(function(likesResponse){
+        // console.log(likesResponse.data);
+        controller.matches = likesResponse.data;
+      });
     });
 
-    this.star = function(){
-      console.log('test');
-      console.log(controller.current.likes[0].name);
-    };
+    // this.star = function(){
+    //   console.log('test');
+    //   console.log(controller.current.likes[0].name);
+    // };
 
 }]);
 
@@ -29,19 +37,19 @@ app.controller('likesController', ['$http', '$routeParams', '$location', functio
   var controller = this;
   $http({ method: 'GET', url: '/users/likes'}).then(function(response){
     controller.likes = response.data;
-    likesArray = controller.likes;
-    console.log(controller.likes);
+    // likesArray = controller.likes;
+    // console.log(controller.likes);
   });
 
   this.addLike = function(category){
 
-    console.log(category);
+    // console.log(category);
     $http({
       method: 'PUT',
       url:"users/"+ $routeParams.id,
       data: category
     }).then(function(response){
-      console.log(response.data);
+      // console.log(response.data);
     });
   };
 
@@ -102,7 +110,7 @@ app.config(["$routeProvider","$locationProvider", function($routeProvider,$locat
 // testing the login with passport & angular
 app.controller('bodyController',["$http", '$location', '$routeParams', function($http, $location, $routeParams){
   var controller = this;
-  var id;
+  this.id = null;
   this.newUser = {};
   this.signIn = {};
 // =======================================
@@ -147,23 +155,29 @@ this.logout = function(){
         controller.newUser = {};
       }).then(function(){
         done = "users/" + id;
-        $location.path("users/" + id +'/new');
+        if(id === undefined){
+          $location.path("/");
+        } else {
+            $location.path("users/" + id +'/new');
+        }
+
+
         // $location.path("users/" + id)
       });
     };
 }]);
 
 
-// rendering users on the page --> confirming that they show up
-app.controller('userController', ["$http",function($http) {
-    var controller = this;
-    $http({
-      method:"GET",
-      url: "/users"
-    }).then(function(response){
-      // angular.forEach(response.data,function(i){
-      //   console.log(i.likes);
-      // });
-      controller.users = response.data;
-    });
-}]);
+// // rendering users on the page --> confirming that they show up
+// app.controller('userController', ["$http",function($http) {
+//     var controller = this;
+//     $http({
+//       method:"GET",
+//       url: "/users"
+//     }).then(function(response){
+//       // angular.forEach(response.data,function(i){
+//       //   console.log(i.likes);
+//       // });
+//       controller.users = response.data;
+//     });
+// }]);
