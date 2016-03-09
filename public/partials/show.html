@@ -15,7 +15,7 @@
 <section ng-controller="userController as use">
   <input type="text" placeholder="filter" ng-model="searchBox">
   <ul>
-    <li ng-repeat="ppl in use.users.sort() | filter:{'likes':1} | filter: searchBox">
+    <li ng-repeat="ppl in use.users.sort() |filter: searchBox">
       <!--Need to add an if statement if the user is logged in to make the a Tag available  -->
       <a href="/users/{{ppl._id}}">show!</a>
       ID: {{ppl._id}}

@@ -152,6 +152,9 @@ app.controller('userController', ["$http",function($http) {
       method:"GET",
       url: "/users"
     }).then(function(response){
+      angular.forEach(response.data,function(i){
+        console.log(i.likes);
+      });
       controller.users = response.data;
     });
 }]);
