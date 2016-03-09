@@ -1,8 +1,8 @@
 
-<div id="login-signUp" class='animated rollIn'>
+<div id="login-signUp" class='animated fadeIn'>
 
   <div id='login'>
-    <h1 ng-click='showMe =! showMe' class='title'>LOGIN</h1>
+    <h1 ng-click='showMe =! showMe' class='title' ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGIN</h1>
     <form ng-submit="body.login()" ng-show='showMe' class='animated zoomInDown'>
       <input class='login' type="text" placeholder="Email" ng-model="body.signIn.email">
       <div class='line'></div>
@@ -15,7 +15,7 @@
 
 
   <div id='signup'>
-    <h1 ng-click='showMe2 =! showMe2' class='title'>GET STARTED</h1>
+    <h1 ng-click='showMe2 =! showMe2' class='title' ng-class="{'animated flash': animate2}" ng-mouseover="animate2 =! animate2" ng-mouseleave="animate2 =! animate2">GET STARTED</h1>
       <form ng-submit="body.register()" ng-show='showMe2' class='animated zoomInDown'>
         <input class='login' type="text" placeholder="First Name" ng-model="body.newUser.firstName">
         <div class='line'></div>
