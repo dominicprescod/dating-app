@@ -3,7 +3,7 @@ var done;
 
 app.controller("userShow",["$http","$routeParams", "$location", function($http, $routeParams, $location){
     var controller = this;
-    var id
+    var id;
 
     $http({
       method: "GET",
@@ -38,8 +38,8 @@ app.controller('likesController', ['$http', '$routeParams', '$location', functio
   };
 
   this.done = function(){
-    console.log('something')
-    $location.path(done)
+    console.log('something');
+    $location.path(done);
   };
 // =======
 // Merge Conflict Tuesday Mar 8th 11:04am changing put/post to add likes
@@ -93,7 +93,7 @@ app.config(["$routeProvider","$locationProvider", function($routeProvider,$locat
 // testing the login with passport & angular
 app.controller('bodyController',["$http", '$location', '$routeParams', function($http, $location, $routeParams){
   var controller = this;
-  var id
+  var id;
   this.newUser = {};
   this.signIn = {};
 // =======================================
@@ -112,12 +112,18 @@ this.logout = function(){
           url: "/users/login",
           data: this.signIn
         }).then(function(response){
-          console.log(response.data);
-          id = response.data._id
+          // console.log(response.data);
+          id = response.data._id;
           controller.signIn = {};
         }).then(function(){
-          $location.path("users/" + id)
-        })
+          // redirects the page to the home page if the user info entered does not exist
+          if(!id){
+            $location.path("/");
+          } else {
+              $location.path("users/" + id);
+          }
+
+        });
     };
 
     // =======================================
@@ -128,13 +134,13 @@ this.logout = function(){
         data: this.newUser
       }).then(function(response){
         console.log(response.data);
-        id = response.data._id
+        id = response.data._id;
         controller.newUser = {};
       }).then(function(){
         done = "users/" + id;
-        $location.path("users/" + id +'/new')
+        $location.path("users/" + id +'/new');
         // $location.path("users/" + id)
-      })
+      });
     };
 }]);
 
