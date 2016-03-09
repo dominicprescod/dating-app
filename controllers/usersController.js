@@ -25,6 +25,13 @@ router.get('/', function(req, res) {
 	});
 });
 
+ // Finding according to similar LIKES
+ router.get("/bylikes",function(req,res){
+   User.find({ likes: { '$elemMatch': { name: {$in:["Cars","Gaming"] }} } },function(err,data){
+     console.log(data.length);
+   });
+ });
+
 // GETTING LIKES CATEGORIES
 router.get('/likes', function(req, res){
   Like.find(function(err, data) {

@@ -17,9 +17,9 @@ app.controller("userShow",["$http","$routeParams", "$location", function($http, 
     });
 
     this.star = function(){
-      console.log('test')
-      console.log(controller.current.likes[0].name)
-    }
+      console.log('test');
+      console.log(controller.current.likes[0].name);
+    };
 
 }]);
 
@@ -161,9 +161,9 @@ app.controller('userController', ["$http",function($http) {
       method:"GET",
       url: "/users"
     }).then(function(response){
-      angular.forEach(response.data,function(i){
-        console.log(i.likes);
-      });
+      // angular.forEach(response.data,function(i){
+      //   console.log(i.likes);
+      // });
       controller.users = response.data;
     });
 }]);
