@@ -112,5 +112,19 @@ li {
   margin-right: 10px;
   border: solid 1px;
   width: 200px;
-  height: 100px;
+  height: 80px;
+  cursor: pointer;
+  padding-top: 50px;
+}
+
+a {
+  text-decoration: none;
+  padding: 10px 30px;
+  border-color: #ff6861;
+  background-color: #ff6861;
+  color: white;
+}
+
+.show {
+  color: #949494;
 }

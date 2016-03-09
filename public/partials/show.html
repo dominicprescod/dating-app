@@ -1,4 +1,4 @@
-<div class='animated fadeIn'>
+<div class='animated fadeIn, show'>
   <img class='avatar' src='http://41.media.tumblr.com/98d15c77b00b8cc2a1ca502da3931ba6/tumblr_ni3ftaaDe71qhqm30o4_1280.jpg'>
   <br><br>
   <h1>{{use.current.firstName}} {{use.current.lastName}}</h1>
@@ -8,7 +8,7 @@
   <h4>Gender: {{use.current.gender}}</h4>
   <br>
   <h4>About: {{use.current.about}}</h4>
-  <br><br>
+  <br><br><br><br>
   <div ng-controller='bodyController as body'>
      <a href="/" ng-click="body.logout()" ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGOUT</a>
   </div>
