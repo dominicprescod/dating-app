@@ -1,5 +1,7 @@
 var app = angular.module('datingApp', ["ngRoute"]);
 var done;
+var likesArray;
+var userLikesArray;
 
 app.controller("userShow",["$http","$routeParams", "$location", function($http, $routeParams, $location){
     var controller = this;
@@ -11,9 +13,13 @@ app.controller("userShow",["$http","$routeParams", "$location", function($http, 
     }).then(
     function(response){
       controller.current = response.data;
+      userLikesArray = controller.current;
     });
 
-
+    this.star = function(){
+      console.log('test')
+      console.log(controller.current.likes[0].name)
+    }
 
 }]);
 
@@ -23,6 +29,8 @@ app.controller('likesController', ['$http', '$routeParams', '$location', functio
   var controller = this;
   $http({ method: 'GET', url: '/users/likes'}).then(function(response){
     controller.likes = response.data;
+    likesArray = controller.likes;
+    console.log(controller.likes);
   });
 
   this.addLike = function(category){
@@ -38,7 +46,6 @@ app.controller('likesController', ['$http', '$routeParams', '$location', functio
   };
 
   this.done = function(){
-    console.log('something')
     $location.path(done)
   };
 // =======

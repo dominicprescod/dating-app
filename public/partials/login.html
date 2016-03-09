@@ -1,20 +1,37 @@
-<div id="login-signUp">
-  <h1>Login</h1>
-  <form ng-submit="body.login()">
-    <input type="text" placeholder="Email" ng-model="body.signIn.email">
-    <input type="password" placeholder="Password" ng-model="body.signIn.password">
-    <input type="submit" value="Login">
-  </form>
-  <hr>
-  <h1>Register</h1>
-  <form ng-submit="body.register()">
-    <input type="text" placeholder="First Name" ng-model="body.newUser.firstName">
-    <input type="text" placeholder="Last Name" ng-model="body.newUser.lastName">
-    <input type="text" placeholder="Email" ng-model="body.newUser.email">
-    <input type="password" placeholder="Password" ng-model="body.newUser.password">
-    <input type="text" placeholder="Male/Female" ng-model="body.newUser.gender">
-    <input type="text" placeholder="Age" ng-model="body.newUser.age">
-    <input type="text" placeholder="About" ng-model="body.newUser.about">
-    <input type="submit" value="Register">
-  </form>
+
+<div id="login-signUp" class='animated rollIn'>
+
+  <div id='login'>
+    <h1 ng-click='showMe =! showMe' class='title'>LOGIN</h1>
+    <form ng-submit="body.login()" ng-show='showMe' class='animated zoomInDown'>
+      <input class='login' type="text" placeholder="Email" ng-model="body.signIn.email">
+      <div class='line'></div>
+      <input class='login' type="password" placeholder="Password" ng-model="body.signIn.password">
+      <div class='line'></div>
+      <input class='login, button' type="submit" value="Login">
+
+    </form>
+  </div>
+
+
+  <div id='signup'>
+    <h1 ng-click='showMe2 =! showMe2' class='title'>GET STARTED</h1>
+      <form ng-submit="body.register()" ng-show='showMe2' class='animated zoomInDown'>
+        <input class='login' type="text" placeholder="First Name" ng-model="body.newUser.firstName">
+        <div class='line'></div>
+        <input class='login' type="text" placeholder="Last Name" ng-model="body.newUser.lastName">
+        <div class='line'></div>
+        <input class='login' type="text" placeholder="Email" ng-model="body.newUser.email">
+        <div class='line'></div>
+        <input class='login' type="password" placeholder="Password" ng-model="body.newUser.password">
+        <div class='line'></div>
+        <input class='login' type="text" placeholder="Male/Female" ng-model="body.newUser.gender">
+        <div class='line'></div>
+        <input class='login' type="text" placeholder="Age" ng-model="body.newUser.age">
+        <div class='line'></div>
+        <input class='login' type="text" placeholder="About" ng-model="body.newUser.about">
+        <div class='line'></div>
+        <input class='login, button' type="submit" value="Register">
+      </form>
+  </div>
 </div>

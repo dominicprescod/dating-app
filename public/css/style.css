@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('../fonts/Coves Light.otf');
+}
+
+@font-face {
+    font-family: 'MyFont2';
+    src: url('../fonts/XPLOR Bold-Regular.otf');
+}
+
+.playerturn {
+  -webkit-animation-duration: 1s;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-iteration-count: 1;
+}
+
+* {
+  font-family: 'MyFont';
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  /*background-color: #00bd9d;
+  color: white;*/
+}
+
+#appName {
+  font-family: 'MyFont2';
+  margin-top: 5%;
+  font-size: 3em;
+  margin-bottom: 0;
+  color: #18bd9b;
+}
+
+#about {
+  font-family: 'MyFont';
+  font-size: 1em;
+  color: #949494;
+}
+
+.title {
+  cursor: pointer;
+}
+
+#login-signUp {
+  margin-top: 5%;
+  font-size: 1.5em;
+  color: #ff6861;
+}
+
+#login {
+  margin-bottom: 2%;
+}
+
+.login {
+  border: none;
+  margin-top: 3%;
+}
+
+.button {
+  border: solid 1px;
+  width: 120px;
+  height: 20px;
+  border-color: #18bd9b;
+  background-color: #18bd9b;
+  color: white;
+  cursor: pointer;
+}
+
+.button2 {
+  margin-top: 3%;
+  border: solid 1px;
+  width: 120px;
+  height: 20px;
+  border-color: #ff6861;
+  background-color: #ff6861;
+  color: white;
+  cursor: pointer;
+}
+
+.line {
+  border-bottom: solid 1px;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  border-color: #949494;
+}
+
+.avatar {
+  margin-top: 5%;
+  width: 200px;
+  height: 200px;
+  vertical-align: middle;
+  border: solid 2px;
+  border-radius: 100%;
+}
+
+#categories {
+  margin-top: 5%;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul {
+  display: inline-block;
+}
+
+li {
+  display: inline-block;
+  list-style: none;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: solid 1px;
+  width: 200px;
+  height: 100px;
+}

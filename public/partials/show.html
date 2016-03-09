@@ -1,9 +1,16 @@
-<h1>{{use.current.firstName}}</h1> <h1>{{use.current.lastName}}</h1>
-<h4>{{use.current.email}}</h4>
-<h4>{{use.current.age}}</h4>
-<h4>{{use.current.gender}}</h4>
-<h4>{{use.current.about}}</h4>
-
-<div ng-controller='bodyController as body'>
-   <a href="/" ng-click="body.logout()">Logout</a>
+<div class='animated fadeIn'>
+  <img class='avatar' src='http://41.media.tumblr.com/98d15c77b00b8cc2a1ca502da3931ba6/tumblr_ni3ftaaDe71qhqm30o4_1280.jpg'>
+  <br><br>
+  <h1>{{use.current.firstName}} {{use.current.lastName}}</h1>
+  <br>
+  <h4>Age: {{use.current.age}}</h4>
+  <br>
+  <h4>Gender: {{use.current.gender}}</h4>
+  <br>
+  <h4>About: {{use.current.about}}</h4>
+  <br><br>
+  <div ng-controller='bodyController as body'>
+     <a href="/" ng-click="body.logout()" ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGOUT</a>
+  </div>
 </div>
+<!-- <button ng-click='use.star()'>click me</button> -->
