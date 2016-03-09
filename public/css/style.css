@@ -39,12 +39,21 @@
 
 .title {
   cursor: pointer;
+  border: solid 5px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  background-color: #ff6861;
+  border-radius: 10px;
+  vertical-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #login-signUp {
   margin-top: 5%;
-  font-size: 1.5em;
-  color: #ff6861;
+  font-size: 1em;
+  color: white;
 }
 
 #login {
@@ -135,6 +144,6 @@ i {
 }
 
 #share{
-  margin-top: 20%;
+  margin-top: 50%;
   padding-bottom: 5%;
 }
