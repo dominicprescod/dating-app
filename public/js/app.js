@@ -1,15 +1,16 @@
 var app = angular.module('datingApp', ["ngRoute"]);
 var done;
-var hacking
+var hacking;
+var signedIn;
 
 app.controller("userShow",["$http","$routeParams", "$location", "$scope", function($http, $routeParams, $location, $scope){
     var controller = this;
     // var id;
     // this.myLikes = null;
-
+    this.user = signedIn;
     $scope.$on('addLike', function(eventObj, data){
       controller.current = data;
-    })
+    });
 
     hacking = function(){
       $http({
@@ -18,6 +19,7 @@ app.controller("userShow",["$http","$routeParams", "$location", "$scope", functi
       }).then(
       function(response){
         controller.current = response.data;
+        // console.log(response);
       }).then(function(){
         $http({
            method: "POST",
@@ -51,8 +53,8 @@ app.controller("userShow",["$http","$routeParams", "$location", "$scope", functi
               });
               // ===============================================================================================================================================
         });
-      })
-    }
+      });
+    };
 
     hacking();
 
@@ -78,6 +80,9 @@ app.controller("userShow",["$http","$routeParams", "$location", "$scope", functi
 app.controller('likesController', ['$http', '$routeParams', '$location', '$scope', function($http, $routeParams, $location, $scope){
 
   var controller = this;
+  this.user = signedIn;
+  // console.log($routeParams.id);
+  this.page = $routeParams.id;
   $http({ method: 'GET', url: '/users/likes'}).then(function(response){
     controller.likes = response.data;
     // likesArray = controller.likes;
@@ -93,7 +98,7 @@ app.controller('likesController', ['$http', '$routeParams', '$location', '$scope
       data: category
     }).then(function(response){
       console.log(response.data);
-      controller.current = response.data
+      controller.current = response.data;
       hacking();
       // $scope.$emit('addLike', controller.current)
     });
@@ -165,6 +170,7 @@ this.logout = function(){
     method:"GET",
     url: "/users/logout"
   }).then(function(response){
+    signedIn = {};
   });
 };
   // ======================================
@@ -175,6 +181,7 @@ this.logout = function(){
           url: "/users/login",
           data: this.signIn
         }).then(function(response){
+          signedIn = response.data;
           // console.log(response.data);
           id = response.data._id;
           controller.signIn = {};
@@ -196,6 +203,7 @@ this.logout = function(){
         url: "/users/register",
         data: this.newUser
       }).then(function(response){
+        signedIn = response.data;
         // console.log(response.data);
         id = response.data._id;
         controller.newUser = {};

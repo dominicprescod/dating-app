@@ -27,6 +27,7 @@ router.get('/', function(req, res) {
 
  // Finding according to similar LIKES
  router.post("/:id/bylikes",function(req,res){
+   req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
    var cat = [];
   //  console.log("hey");
    for(var i = 0; i < req.body.length; i++){
@@ -50,6 +51,7 @@ router.get('/likes', function(req, res){
 
 // POST - PUT
 router.put('/:id', function(req, res){
+  req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
   // console.log(req.user.likes)
   // console.log(req.body+" this is the like object");
   User.findById(req.params.id, function(err, user){
@@ -104,6 +106,7 @@ router.post('/login',passport.authenticate('local-login',{
 
 // user SHow data
 router.get('/:id/json', isLoggedIn, function(req,res){
+  req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
     User.findById(req.params.id,function(err,data){
       res.send(data);
     });
@@ -111,6 +114,7 @@ router.get('/:id/json', isLoggedIn, function(req,res){
 
 // getting user likesArray
 router.post('/:id', function(req, res){
+  req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
   // console.log(req.body);
   // console.log('======================================');
   User.findById(req.params.id, function(err, data){

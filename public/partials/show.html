@@ -1,4 +1,5 @@
 <div class='animated fadeIn' id='show'>
+  {{use.user.firstName}}
   <img class='avatar' ng-src={{use.current.imglink}}>
   <br><br>
   <h1>{{use.current.firstName}} {{use.current.lastName}}</h1>
@@ -10,7 +11,7 @@
   <h4>Info: {{use.current.about}}</h4>
   <br><br><br><br>
   <ul ng-repeat='like in use.current.likes'>
-    <li class='likeslist' ng-click='use.deleteLike(like)'>{{like.name}}</li>
+    <li class='likeslist' ng-click='use.deleteLike(like)' ng-if="use.user._id===use.current._id">{{like.name}}</li>
   </ul>
 
   <br><br><br><br>
@@ -20,7 +21,7 @@
 </div>
 
 <section id='categories' ng-controller='likesController as likesCtrl'>
-  <ul ng-repeat='likes in likesCtrl.likes'>
+  <ul ng-repeat='likes in likesCtrl.likes' ng-if="likesCtrl.user._id===likesCtrl.page">
     <li class='likeslist' id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike' ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">{{likes.name}}</li>
   </ul>
 </section>
