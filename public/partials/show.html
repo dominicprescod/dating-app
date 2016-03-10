@@ -31,9 +31,10 @@
   <br>
   <section>
     <ul>
-      <li class="likeslist" ng-repeat="percentage in use.sorted | orderBy: '-percentage'">
+      <li class="likeslist" ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName">
         <a href="/users/{{percentage.value._id}}">Show</a>
         <br><br>
+        {{percentage.percentage | number:0}}% Match
         First Name: {{percentage.value.firstName}}
         Last Name: {{percentage.value.lastName}}
         Email: {{percentage.value.email}}
