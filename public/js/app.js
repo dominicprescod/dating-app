@@ -1,7 +1,6 @@
 var app = angular.module('datingApp', ["ngRoute"]);
-// var done;
-// var likesArray;
-// var userLikesArray;
+var done;
+var hacking
 
 app.controller("userShow",["$http","$routeParams", "$location", "$scope", function($http, $routeParams, $location, $scope){
     var controller = this;
@@ -12,17 +11,18 @@ app.controller("userShow",["$http","$routeParams", "$location", "$scope", functi
       controller.current = data;
     })
 
-
-    $http({
-      method: "GET",
-      url: "users/"+$routeParams.id+"/json"
-    }).then(
-    function(response){
-      controller.current = response.data;
+    hacking = function(){
+      $http({
+        method: "GET",
+        url: "users/"+$routeParams.id+"/json"
+      }).then(
+      function(response){
+        controller.current = response.data;
+      }).then(function(){
         $http({
            method: "POST",
            url: "users/"+$routeParams.id+"/bylikes",
-           data: response.data.likes
+           data: controller.current.likes
         }).then(function(likesResponse){
           // console.log(likesResponse.data);
           controller.matches = likesResponse.data;
@@ -50,10 +50,51 @@ app.controller("userShow",["$http","$routeParams", "$location", "$scope", functi
                                         });
               });
               // ===============================================================================================================================================
-
         });
+      })
+    }
 
-    });
+    $http({
+      method: "GET",
+      url: "users/"+$routeParams.id+"/json"
+    }).then(
+    function(response){
+      controller.current = response.data;
+    }).then(function(){
+      $http({
+         method: "POST",
+         url: "users/"+$routeParams.id+"/bylikes",
+         data: controller.current.likes
+      }).then(function(likesResponse){
+        // console.log(likesResponse.data);
+        controller.matches = likesResponse.data;
+
+        // ===============================================================================================================================================
+        // working out the % users match based on interestes and pushing into an array
+        controller.sorted =[];
+        // looping through the matches received from the server
+            controller.matches.forEach(function(i){
+              // setting match point to 0 at the start of each iteration
+              var match = 0;
+              // looping through the current user's likes (at the moment set to work on person viewing the page as opposed to person logged in)
+              controller.current.likes.forEach(function(j){
+                // looping through each user's likes to check for a match, assigns a point match++ if they do
+                i.likes.forEach(function(k){
+                  if(j.name === k.name) match++; //single line if statement - dont need {}
+                });
+              });
+              // working out the % match points divided by current user's total amount of likes divided by 100/1
+              var percentage = (match/controller.current.likes.length)*(100/1).toString();
+              // pushing assigned percentage match and user info into a sorted array that can be referenced on the page
+              controller.sorted.push({
+                                      percentage: percentage,
+                                      value: i
+                                      });
+            });
+            // ===============================================================================================================================================
+      });
+    })
+
     this.deleteLike = function(category){
       // console.log(category._id);
       $http({
@@ -64,7 +105,8 @@ app.controller("userShow",["$http","$routeParams", "$location", "$scope", functi
         console.log('test');
         // console.log(category._id);
         console.log(response.data);
-          controller.current = response.data;
+          // controller.current = response.data;
+          hacking();
           // console.log(controller);
       });
     };
@@ -91,7 +133,8 @@ app.controller('likesController', ['$http', '$routeParams', '$location', '$scope
     }).then(function(response){
       console.log(response.data);
       controller.current = response.data
-      $scope.$emit('addLike', controller.current)
+      hacking();
+      // $scope.$emit('addLike', controller.current)
     });
   };
 
