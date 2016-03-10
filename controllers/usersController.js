@@ -51,13 +51,24 @@ router.get('/likes', function(req, res){
 // POST - PUT
 router.put('/:id', function(req, res){
   // console.log(req.user.likes)
-  console.log(req.body+" this is the like object");
+  // console.log(req.body+" this is the like object");
   User.findById(req.params.id, function(err, user){
-    user.likes.push(req.body);
-    user.save(function(err,userWithLikes){
-      res.send(userWithLikes);
+    // setting a variable of false to test if user already has the like element already - false it does not - true it does
+    var hasLike = false;
+    // looping through the current user's likes
+    user.likes.forEach(function(i){
+      // if user like matches the one sent via req.body set hasLike to true
+      if(i.name === req.body.name) hasLike = true;
     });
-    // res.send(req.user);
+    // if hasLike is true send the current user unchanged if false add the like and send the updated user
+    if(hasLike){
+      res.send(user);
+    } else {
+      user.likes.push(req.body);
+      user.save(function(err,userWithLikes){
+      res.send(userWithLikes);
+      });
+    }
   });
 });
 // =======
@@ -100,8 +111,8 @@ router.get('/:id/json', isLoggedIn, function(req,res){
 
 // getting user likesArray
 router.post('/:id', function(req, res){
-  console.log(req.body)
-  console.log('======================================')
+  // console.log(req.body);
+  // console.log('======================================');
   User.findById(req.params.id, function(err, data){
     console.log(data);
     data.likes.forEach(function(i){
@@ -116,8 +127,8 @@ router.post('/:id', function(req, res){
   //
   // }
   data.save(function(){});
-    })
-})
+});
+});
 
 
 // ==================================================

@@ -21,30 +21,29 @@ app.controller("userShow",["$http","$routeParams", "$location", function($http, 
           // console.log(likesResponse.data);
           controller.matches = likesResponse.data;
 
-          // ===========
-          // Trying to sort by % of match
+          // ===============================================================================================================================================
+          // working out the % users match based on interestes and pushing into an array
           controller.sorted =[];
-
+          // looping through the matches received from the server
               controller.matches.forEach(function(i){
-                // console.log(i); // get all matches
+                // setting match point to 0 at the start of each iteration
                 var match = 0;
+                // looping through the current user's likes (at the moment set to work on person viewing the page as opposed to person logged in)
                 controller.current.likes.forEach(function(j){
-                  // console.log('J: ', j);
+                  // looping through each user's likes to check for a match, assigns a point match++ if they do
                   i.likes.forEach(function(k){
-                    // console.log("K: ",k);
-                    if(j.name === k.name) match++;
-                    // console.log("match: ",match);
+                    if(j.name === k.name) match++; //single line if statement - dont need {}
                   });
                 });
+                // working out the % match points divided by current user's total amount of likes divided by 100/1
                 var percentage = (match/controller.current.likes.length)*(100/1).toString();
-                // console.log('PERCENTAGE', percentage);
-                controller.sorted.push({percentage: percentage,
-                                        value: i});
+                // pushing assigned percentage match and user info into a sorted array that can be referenced on the page
+                controller.sorted.push({
+                                        percentage: percentage,
+                                        value: i
+                                        });
               });
-              // console.log('sorted', controller.sorted);
-              // controller.sorted;
-
-
+              // ===============================================================================================================================================
 
         });
 
