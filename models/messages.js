@@ -3,7 +3,6 @@ mongoose.set('debug',true);
 var Schema = mongoose.Schema;
 
 
-
 var messageSchema = new Schema({
       name: {type: String, required: true},
       date: {type: Date, default: Date.now},

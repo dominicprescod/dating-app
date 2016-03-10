@@ -1,3 +1,6 @@
+<!-- Shows Partial -->
+
+<!-- Shows user's information -->
 <div class='animated fadeIn' id='show'>
   <img class='avatar' ng-src={{use.current.imglink}}>
   <br><br>
@@ -13,55 +16,35 @@
     <li class='likeslist' ng-click='use.deleteLike(like)' ng-if="use.user._id===use.current._id">{{like.name}}</li>
     <li class='likeslist2' ng-if="use.user._id!=use.current._id">{{like.name}}</li>
   </ul>
-  <br>
-  <br>
-    <a href='/users/{{use.user._id}}' class='a1' ng-class="{'animated flash': animate5}" ng-mouseover="animate5 =! animate5" ng-mouseleave="animate5 =! animate5">&nbsp&nbspHOME&nbsp&nbsp</a>
-  <br>
-  <br>
+  <br><br><br>
+  <a href='/users/{{use.user._id}}' class='a1' ng-class="{'animated flash': animate5}" ng-mouseover="animate5 =! animate5" ng-mouseleave="animate5 =! animate5">&nbsp&nbspHOME&nbsp&nbsp</a>
+  <br><br><br>
   <div ng-controller='bodyController as body'>
-     <a href="/" class='a1' ng-click="body.logout()" ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGOUT</a>
+     <a href="/" class='a1 a2' ng-click="body.logout()" ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGOUT</a>
   </div>
 </div>
 
+<!-- Shows like categories -->
 <section id='categories' ng-controller='likesController as likesCtrl'>
   <ul ng-repeat='likes in likesCtrl.likes' ng-if="likesCtrl.user._id===likesCtrl.page">
     <li class='likeslist' id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike' ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">{{likes.name}}</li>
   </ul>
 </section>
 
+<!-- Shows matches with other people -->
 <section>
-
   <input type="text" placeholder="filter" ng-model="searchBox">
   <br>
-  <section>
-    <ul>
-      <li class="likeslist" ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName">
-        <a href="/users/{{percentage.value._id}}"><img class='avatars' ng-src='{{percentage.value.imglink}}'></a>
-        <br><br>
-        {{percentage.percentage | number:0}}% Match
-        First Name: {{percentage.value.firstName}}
-        Last Name: {{percentage.value.lastName}}
-        <!-- Email: {{percentage.value.email}}
-        Age: {{percentage.value.age}}
-        About: {{percentage.value.about}} -->
-      </li>
-    </ul>
-
-  </section>
-    <!-- Need to add an if statement if the user is logged in to make the a Tag available  -->
-  <!-- <ul>
-
-    <li ng-repeat="ppl in use.matches.sort() |filter: searchBox">
-
-      <a href="/users/{{ppl._id}}">show!</a>
-      ID: {{ppl._id}}
-      First Name: {{ppl.firstName}}
-      Last Name: {{ppl.lastName}}
-      Email: {{ppl.email}}
-      Password:  {{ppl.password}}
-      Age: {{ppl.age}}
-      About: {{ppl.about}}
+  <ul>
+    <li class="likeslist" ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName">
+      <a href="/users/{{percentage.value._id}}"><img class='avatars' ng-src='{{percentage.value.imglink}}'></a>
+      <br><br>
+      {{percentage.percentage | number:0}}% Match
+      First Name: {{percentage.value.firstName}}
+      Last Name: {{percentage.value.lastName}}
+      <!-- Email: {{percentage.value.email}}
+      Age: {{percentage.value.age}}
+      About: {{percentage.value.about}} -->
     </li>
-  </ul> -->
-
+  </ul>
 </section>

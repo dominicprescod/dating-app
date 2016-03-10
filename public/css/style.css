@@ -19,8 +19,6 @@
   text-align: center;
   margin: 0;
   padding: 0;
-  /*background-color: #00bd9d;
-  color: white;*/
 }
 
 #appName {
@@ -154,12 +152,16 @@ ul {
   color: white;
   font-size: 10px;
   border-radius: 5px;
+  margin-bottom: 5%;
+}
+
+.a2 {
+  margin-right: 4px;
 }
 
 #show {
   color: #949494;
 }
-
 
 #share{
   margin-top: 30%;
@@ -183,4 +185,5 @@ ul {
     color: black;
 }
 
-textarea, input { outline: none; }
+textarea, input { outline: none;
+}

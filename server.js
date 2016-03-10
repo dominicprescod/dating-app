@@ -7,8 +7,6 @@ var express           = require('express'),
     session           = require('express-session'),
     app               = express(),
     port              = process.env.PORT || 3000;
-
-
 require('./config/passport')(passport);
 
 var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/dating_app';
@@ -26,7 +24,7 @@ app.use(methodOverride('_method'));
 var usersController = require('./controllers/usersController');
 app.use('/users', usersController);
 
-// creating likes Seed Data
+// Creating likes Seed Data
 var likesSeedController = require('./controllers/likesSeedController');
 app.use('/likesseed', likesSeedController);
 
@@ -34,13 +32,11 @@ app.use('/likesseed', likesSeedController);
 var userSeedController = require('./controllers/userSeedController');
 app.use('/userseed', userSeedController);
 
-
-// makes a variable login available in your templates.
+// Makes a variable login available in your templates.
 app.use(function(req, res, next) {
   res.locals.login = req.isAuthenticated();
   next();
 });
-
 
 // CONNECT & LISTEN
 mongoose.connection.once('open', function() {
