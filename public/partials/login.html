@@ -1,6 +1,7 @@
+<!-- Login & Singup Parital -->
 
+<!-- Login forum -->
 <div id="login-signUp" class='animated fadeIn'>
-
   <div id='login'>
     <h1 ng-click='showMe =! showMe' class='title' ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGIN</h1>
     <form ng-submit="body.login()" ng-show='showMe' class='animated zoomInDown'>
@@ -9,14 +10,13 @@
       <input class='login' type="password" placeholder="Password" ng-model="body.signIn.password">
       <div class='line'></div><br>
       <input class='login, button' type="submit" value="Login">
-
     </form>
-  </div>
+</div>
 
-
-  <div id='signup'>
-    <h1 ng-click='showMe2 =! showMe2' class='title' ng-class="{'animated flash': animate2}" ng-mouseover="animate2 =! animate2" ng-mouseleave="animate2 =! animate2">GET STARTED</h1>
-      <div id='container' ng-show='showMe2' class='animated zoomInDown'>
+<!-- Signup forum -->
+<div id='signup'>
+  <h1 ng-click='showMe2 =! showMe2' class='title' ng-class="{'animated flash': animate2}" ng-mouseover="animate2 =! animate2" ng-mouseleave="animate2 =! animate2">GET STARTED</h1>
+    <div id='container' ng-show='showMe2' class='animated zoomInDown'>
       <form id="up-form">
         <input class='uploadButton' type="file">
         <br>
@@ -41,11 +41,11 @@
         <div class='line'></div><br>
         <input class='login, button' type="submit" value="Register" ng-click='hideMe =! hideMe'>
       </form>
-      <div>
-      </div>
+  </div>
+</div>
 
 <!-- API SCRIPT TO UPLOAD IMAGES -->
-  <script>
+<script>
   var ospry = new Ospry('pk-test-mfmyvvhj3zhzgvb3xs85zqhp');
 
   var onUpload = function(err, metadata) {
@@ -72,4 +72,4 @@
       imageReady: onUpload,
     });
   });
-  </script>
+</script>
