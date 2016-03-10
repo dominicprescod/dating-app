@@ -104,6 +104,14 @@
   border-radius: 100%;
 }
 
+.avatars {
+  width: 100px;
+  height: 100px;
+  vertical-align: middle;
+  border: solid 2px;
+  border-radius: 100%;
+}
+
 #categories {
   margin-top: 5%;
   width: 60%;
@@ -127,7 +135,18 @@ ul {
   padding-bottom: 40px;
 }
 
-a {
+.likeslist2 {
+  display: inline-block;
+  list-style: none;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: solid 1px;
+  width: 200px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.a1 {
   text-decoration: none;
   padding: 10px 80px;
   border-color: #ff6861;
@@ -141,9 +160,6 @@ a {
   color: #949494;
 }
 
-i {
-  margin-top: 3%;
-}
 
 #share{
   margin-top: 30%;
@@ -166,3 +182,5 @@ i {
     padding-bottom: 20px;
     color: black;
 }
+
+textarea, input { outline: none; }

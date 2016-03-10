@@ -1,5 +1,4 @@
 <div class='animated fadeIn' id='show'>
-  {{use.user.firstName}}
   <img class='avatar' ng-src={{use.current.imglink}}>
   <br><br>
   <h1>{{use.current.firstName}} {{use.current.lastName}}</h1>
@@ -12,11 +11,15 @@
   <br><br><br><br>
   <ul ng-repeat='like in use.current.likes'>
     <li class='likeslist' ng-click='use.deleteLike(like)' ng-if="use.user._id===use.current._id">{{like.name}}</li>
+    <li class='likeslist2' ng-if="use.user._id!=use.current._id">{{like.name}}</li>
   </ul>
-
-  <br><br><br><br>
+  <br>
+  <br>
+    <a href='/users/{{use.user._id}}' class='a1' ng-class="{'animated flash': animate5}" ng-mouseover="animate5 =! animate5" ng-mouseleave="animate5 =! animate5">&nbsp&nbspHOME&nbsp&nbsp</a>
+  <br>
+  <br>
   <div ng-controller='bodyController as body'>
-     <a href="/" ng-click="body.logout()" ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGOUT</a>
+     <a href="/" class='a1' ng-click="body.logout()" ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGOUT</a>
   </div>
 </div>
 
@@ -33,14 +36,14 @@
   <section>
     <ul>
       <li class="likeslist" ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName">
-        <a href="/users/{{percentage.value._id}}">Show</a>
+        <a href="/users/{{percentage.value._id}}"><img class='avatars' ng-src='{{percentage.value.imglink}}'></a>
         <br><br>
         {{percentage.percentage | number:0}}% Match
         First Name: {{percentage.value.firstName}}
         Last Name: {{percentage.value.lastName}}
-        Email: {{percentage.value.email}}
+        <!-- Email: {{percentage.value.email}}
         Age: {{percentage.value.age}}
-        About: {{percentage.value.about}}
+        About: {{percentage.value.about}} -->
       </li>
     </ul>
 
