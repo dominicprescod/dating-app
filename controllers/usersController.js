@@ -114,12 +114,12 @@ router.post('/:id', function(req, res){
   // console.log(req.body);
   // console.log('======================================');
   User.findById(req.params.id, function(err, data){
-    console.log(data);
+    // console.log(data);
     data.likes.forEach(function(i){
       if(i.name === req.body.name){
-        console.log(i);
+        // console.log(i);
         var num = data.likes.indexOf(i);
-        console.log(num);
+        // console.log(num);
         data.likes.splice(num,1);
       }
     });

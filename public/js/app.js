@@ -49,13 +49,13 @@ app.controller("userShow",["$http","$routeParams", "$location", function($http, 
 
     });
     this.deleteLike = function(category){
-      console.log(category._id);
+      // console.log(category._id);
       $http({
         method: 'POST',
         url: 'users/' + $routeParams.id,
         data: category
       }).then(function(response){
-        console.log(category._id);
+        // console.log(category._id);
       });
     };
 
