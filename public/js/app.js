@@ -3,10 +3,16 @@ var app = angular.module('datingApp', ["ngRoute"]);
 // var likesArray;
 // var userLikesArray;
 
-app.controller("userShow",["$http","$routeParams", "$location", function($http, $routeParams, $location){
+app.controller("userShow",["$http","$routeParams", "$location", "$scope", function($http, $routeParams, $location, $scope){
     var controller = this;
     // var id;
     // this.myLikes = null;
+
+    $scope.$on('addLike', function(eventObj, data){
+      controller.current = data;
+    })
+
+
     $http({
       method: "GET",
       url: "users/"+$routeParams.id+"/json"
@@ -55,14 +61,18 @@ app.controller("userShow",["$http","$routeParams", "$location", function($http, 
         url: 'users/' + $routeParams.id,
         data: category
       }).then(function(response){
+        console.log('test');
         // console.log(category._id);
+        console.log(response.data);
+          controller.current = response.data;
+          // console.log(controller);
       });
     };
 
 }]);
 
 // rendering likes on the page ---> testing that the data shows up
-app.controller('likesController', ['$http', '$routeParams', '$location', function($http, $routeParams, $location){
+app.controller('likesController', ['$http', '$routeParams', '$location', '$scope', function($http, $routeParams, $location, $scope){
 
   var controller = this;
   $http({ method: 'GET', url: '/users/likes'}).then(function(response){
@@ -79,7 +89,9 @@ app.controller('likesController', ['$http', '$routeParams', '$location', functio
       url:"users/"+ $routeParams.id,
       data: category
     }).then(function(response){
-      // console.log(response.data);
+      console.log(response.data);
+      controller.current = response.data
+      $scope.$emit('addLike', controller.current)
     });
   };
 

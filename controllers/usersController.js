@@ -121,12 +121,18 @@ router.post('/:id', function(req, res){
         var num = data.likes.indexOf(i);
         // console.log(num);
         data.likes.splice(num,1);
+
       }
     });
+
+    data.save(function(err, sdata){
+      res.send(sdata);
+    });
+    // res.send(data);
   //   for(var i = 0; i < data.likes.length; i++){
   //
   // }
-  data.save(function(){});
+
 });
 });
 
