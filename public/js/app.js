@@ -20,6 +20,32 @@ app.controller("userShow",["$http","$routeParams", "$location", function($http, 
         }).then(function(likesResponse){
           // console.log(likesResponse.data);
           controller.matches = likesResponse.data;
+
+          // ===========
+          // Trying to sort by % of match
+          controller.sorted =[];
+
+              controller.matches.forEach(function(i){
+                // console.log(i); // get all matches
+                var match = 0;
+                controller.current.likes.forEach(function(j){
+                  // console.log('J: ', j);
+                  i.likes.forEach(function(k){
+                    // console.log("K: ",k);
+                    if(j.name === k.name) match++;
+                    // console.log("match: ",match);
+                  });
+                });
+                var percentage = (match/controller.current.likes.length)*(100/1).toString();
+                // console.log('PERCENTAGE', percentage);
+                controller.sorted.push({percentage: percentage,
+                                        value: i});
+              });
+              // console.log('sorted', controller.sorted);
+              // controller.sorted;
+
+
+
         });
 
     });
@@ -30,9 +56,9 @@ app.controller("userShow",["$http","$routeParams", "$location", function($http, 
         url: 'users/' + $routeParams.id,
         data: category
       }).then(function(response){
-        console.log(category._id)
-      })
-    }
+        console.log(category._id);
+      });
+    };
 
 }]);
 

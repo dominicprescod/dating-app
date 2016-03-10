@@ -29,9 +29,25 @@
 
   <input type="text" placeholder="filter" ng-model="searchBox">
   <br>
-  <ul>
+  <section>
+    <ul>
+      <li class="likeslist" ng-repeat="percentage in use.sorted | orderBy: '-percentage'">
+        <a href="/users/{{percentage.value._id}}">Show</a>
+        <br><br>
+        First Name: {{percentage.value.firstName}}
+        Last Name: {{percentage.value.lastName}}
+        Email: {{percentage.value.email}}
+        Age: {{percentage.value.age}}
+        About: {{percentage.value.about}}
+      </li>
+    </ul>
+
+  </section>
+    <!-- Need to add an if statement if the user is logged in to make the a Tag available  -->
+  <!-- <ul>
+
     <li ng-repeat="ppl in use.matches.sort() |filter: searchBox">
-      <!-- Need to add an if statement if the user is logged in to make the a Tag available  -->
+
       <a href="/users/{{ppl._id}}">show!</a>
       ID: {{ppl._id}}
       First Name: {{ppl.firstName}}
@@ -41,6 +57,6 @@
       Age: {{ppl.age}}
       About: {{ppl.about}}
     </li>
-  </ul>
+  </ul> -->
 
 </section>
