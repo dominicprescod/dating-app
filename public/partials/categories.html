@@ -1,0 +1,13 @@
+<!-- Categories Partial -->
+
+<!-- Loops and list everything in categories -->
+
+<h1 id='h1'>Random Topics</h1>
+<section id='categories' class='animated fadeIn'>
+  <ul ng-repeat='likes in likesCtrl.likes'>
+    <li class='likeslist' id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike' ng-class="{'animated fadeIn': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">{{likes.name}}</li>
+  </ul>
+</section>
+
+<!-- Button goes to homepage -->
+<button class='button2' ng-click='likesCtrl.done()'>Done</button>

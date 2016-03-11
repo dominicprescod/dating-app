@@ -1,0 +1,226 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('../fonts/Coves Light.otf');
+}
+
+@font-face {
+    font-family: 'MyFont3';
+    src: url('../fonts/Coves Bold.otf');
+}
+
+@font-face {
+    font-family: 'MyFont2';
+    src: url('../fonts/XPLOR Bold-Regular.otf');
+}
+.playerturn {
+  -webkit-animation-duration: 1s;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-iteration-count: 1;
+}
+
+* {
+  font-family: 'MyFont';
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#appName {
+  font-family: 'MyFont2';
+  margin-top: 5%;
+  font-size: 3em;
+  margin-bottom: 0;
+  color: #18bd9b;
+}
+
+#about {
+  font-family: 'MyFont';
+  font-size: 1em;
+  color: #949494;
+}
+
+.title {
+  cursor: pointer;
+  border: solid 5px;
+  width: 200px;
+  background-color: #ff6861;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+}
+
+#login-signUp {
+  margin-top: 5%;
+  color: white;
+}
+
+#login {
+  margin-bottom: 2%;
+}
+
+.login {
+  border: none;
+  margin-top: 2%;
+}
+
+.button {
+  border: solid 1px;
+  width: 120px;
+  height: 20px;
+  border-color: #18bd9b;
+  background-color: #18bd9b;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button2 {
+  margin-top: 3%;
+  border: solid 1px;
+  width: 120px;
+  height: 20px;
+  border-color: #ff6861;
+  background-color: #ff6861;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.line {
+  border-bottom: solid 1px;
+  width: 150px;
+  border-color: #949494;
+}
+
+.avatar {
+  margin-top: 5%;
+  width: 200px;
+  height: 200px;
+  vertical-align: middle;
+  border: solid 2px;
+  border-radius: 100%;
+  border-color: white;
+}
+
+.avatars {
+  width: 100px;
+  height: 100px;
+  border: solid 1px grey;
+  border-radius: 100%;
+  margin-top: 80px;
+}
+
+#categories {
+  margin-top: 2%;
+  width: 50%;
+  margin-bottom: 2%;
+}
+
+#h1 {
+  margin-top: 3%;
+}
+
+ul {
+  display: inline-block;
+  margin-top: 2;
+}
+
+.ulWrapper {
+  width: 50%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.likeslist {
+  font-family: 'MyFont3';
+  display: inline-block;
+  list-style: none;
+  margin-top: 10px;
+  border: solid 1px;
+  width: 200px;
+  cursor: pointer;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-size: cover;
+  color: white;
+}
+
+
+.likeslist2 {
+  font-family: 'MyFont3';
+  display: inline-block;
+  list-style: none;
+  margin-top: 10px;
+  border: solid 1px;
+  width: 200px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-size: cover;
+  color: white;
+
+}
+
+.a1 {
+  text-decoration: none;
+  border-color: #ff6861;
+  background-color: #ff6861;
+  color: white;
+  font-size: 10px;
+  border-radius: 5px;
+  width: 150px;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+#show {
+  color: #949494;
+}
+
+#share{
+  margin-top: 30%;
+  padding-bottom: 5%;
+}
+
+#uploadPhoto {
+  text-align: center;
+  margin-top: 5%;
+  height: 10px;
+  padding-top: 3px;
+  padding-bottom: 5px;
+}
+
+.uploadButton{
+    margin-left: 170px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: black;
+}
+
+textarea, input { outline: none;
+}
+
+#searchbox{
+  width: 200px;
+  height: 30px;
+}
+
+.matches {
+  list-style: none;
+  display: inline-block;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 100px;
+}
+
+#matchcontainer{
+  width: 60%;
+}
