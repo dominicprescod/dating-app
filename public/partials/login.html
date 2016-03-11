@@ -3,11 +3,11 @@
 <!-- Login forum -->
 <div id="login-signUp" class='animated fadeIn'>
   <div id='login'>
-    <h1 ng-click='showMe =! showMe' class='title' ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGIN</h1>
+    <h1 ng-click='showMe =! showMe' class='title' ng-class="{'animated fadeIn': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGIN</h1>
     <form ng-submit="body.login()" ng-show='showMe' class='animated zoomInDown'>
-      <input class='login' type="text" placeholder="Email" ng-model="body.signIn.email">
+      <input class='login' type="text" placeholder="email" ng-model="body.signIn.email">
       <div class='line'></div>
-      <input class='login' type="password" placeholder="Password" ng-model="body.signIn.password">
+      <input class='login' type="password" placeholder="password" ng-model="body.signIn.password">
       <div class='line'></div><br>
       <input class='login, button' type="submit" value="Login">
     </form>
@@ -15,7 +15,7 @@
 
 <!-- Signup forum -->
 <div id='signup'>
-  <h1 ng-click='showMe2 =! showMe2' class='title' ng-class="{'animated flash': animate2}" ng-mouseover="animate2 =! animate2" ng-mouseleave="animate2 =! animate2">GET STARTED</h1>
+  <h1 ng-click='showMe2 =! showMe2' class='title' ng-class="{'animated fadeIn': animate2}" ng-mouseover="animate2 =! animate2" ng-mouseleave="animate2 =! animate2">GET STARTED</h1>
     <div id='container' ng-show='showMe2' class='animated zoomInDown'>
       <form id="up-form">
         <input class='uploadButton' type="file">
@@ -23,21 +23,21 @@
         <button class='button' type="submit">Upload Photo</button>
       </form>
       <form ng-submit="body.register()">
-        <input class='login' id='ospry' type="text" placeholder="Please Wait......" ng-model="body.newUser.imglink">
+        <input class='login' id='ospry' type="text" placeholder="please wait......" ng-model="body.newUser.imglink">
         <div class='line'></div>
-        <input class='login' type="text" placeholder="First Name" ng-model="body.newUser.firstName">
+        <input class='login' type="text" placeholder="first name" ng-model="body.newUser.firstName">
         <div class='line'></div>
-        <input class='login' type="text" placeholder="Last Name" ng-model="body.newUser.lastName">
+        <input class='login' type="text" placeholder="last name" ng-model="body.newUser.lastName">
         <div class='line'></div>
-        <input class='login' type="email" placeholder="Email" ng-model="body.newUser.email">
+        <input class='login' type="email" placeholder="email" ng-model="body.newUser.email">
         <div class='line'></div>
-        <input class='login' type="password" placeholder="Password" ng-model="body.newUser.password">
+        <input class='login' type="password" placeholder="password" ng-model="body.newUser.password">
         <div class='line'></div>
-        <input class='login' type="text" placeholder="Male/Female" ng-model="body.newUser.gender">
+        <input class='login' type="text" placeholder="gender" ng-model="body.newUser.gender">
         <div class='line'></div>
-        <input class='login' type="text" placeholder="Age" ng-model="body.newUser.age">
+        <input class='login' type="text" placeholder="age" ng-model="body.newUser.age">
         <div class='line'></div>
-        <input class='login' type="text" placeholder="About" ng-model="body.newUser.about">
+        <input class='login' type="text" placeholder="about" ng-model="body.newUser.about">
         <div class='line'></div><br>
         <input class='login, button' type="submit" value="Register" ng-click='hideMe =! hideMe'>
       </form>
