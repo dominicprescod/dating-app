@@ -219,6 +219,24 @@ textarea, input { outline: none;
 #searchbox{
   width: 200px;
   height: 30px;
+  border-color: #18bd9b;
+  border-style: solid;
+}
+
+#searchbox::-webkit-input-placeholder {
+    color: #18bd9b;
+}
+
+#searchbox:-moz-placeholder {
+    color: #18bd9b;
+}
+
+#searchbox::-moz-placeholder {
+    color: #18bd9b;
+}
+
+#searchbox:-ms-input-placeholder {
+    color: #18bd9b;
 }
 
 .matches {
