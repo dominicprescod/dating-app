@@ -2,9 +2,7 @@
 
 <!-- Shows user's information -->
 <div class='animated fadeIn' id='show'>
-  <div class='fill'>
-    <img ng-src={{use.current.imglink}} ng-class="{'animated flip': animate6}" ng-mouseover="animate6 =! animate6" ng-mouseleave="animate6 =! animate6">
-  </div>
+  <img class='avatar' ng-src={{use.current.imglink}} ng-class="{'animated flip': animate6}" ng-mouseover="animate6 =! animate6" ng-mouseleave="animate6 =! animate6">
   <br><br>
   <h1>{{use.current.firstName}} {{use.current.lastName}}</h1>
   <br>
@@ -13,9 +11,9 @@
   <h4>Gender: {{use.current.gender}}</h4>
   <br>
   <h4>Info: {{use.current.about}}</h4>
-  <br><br>
+  <br><br><br><br>
   <div id='buttonWrapper'>
-    <div class='a1' ng-class="{'animated fadeIn': animate5}" ng-mouseover="animate5 =! animate5" ng-mouseleave="animate5 =! animate5"><a href='/users/{{use.user._id}}'>&nbsp&nbspHOME&nbsp&nbsp</a></div>
+    <div class='a1' ng-mouseover="animate5 =! animate5" ng-mouseleave="animate5 =! animate5"><a href='/users/{{use.user._id}}'ng-class="{'animated fadeIn': animate5}">&nbsp&nbspHOME&nbsp&nbsp</a></div>
     <br>
     <div ng-controller='bodyController as body'>
       <div class='a1' ng-class="{'animated fadeIn': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate"><a href="/" ng-click="body.logout()">LOGOUT</a></div>
@@ -52,13 +50,11 @@
 <!-- Shows matches with other people -->
 <br><br><br><br>
 <section id='matchcontainer'>
-  
+  <input type="text" id='searchbox' placeholder="SEARCH HERE!" ng-model="searchBox">
   <br>
   <ul>
-    <li class="likeslist" ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName">
-      <div class='fill2'>
-        <a href="/users/{{percentage.value._id}}"><img ng-src='{{percentage.value.imglink}}' ng-class="{'animated pulse': animateB}" ng-mouseover="animateB =! animateB" ng-mouseleave="animateB =! animateB"></a>
-      </div>
+-    <li class='matches' ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName"><a href="/users/{{percentage.value._id}}"><img class='avatars' ng-src='{{percentage.value.imglink}}'></a>
+      <br><br>
       {{percentage.percentage | number:0}}&nbsp%&nbsp&nbspMATCH
       <!-- First Name: {{percentage.value.firstName}}
       Last Name: {{percentage.value.lastName}}
