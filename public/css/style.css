@@ -211,6 +211,7 @@ textarea, input { outline: none;
 #searchbox{
   width: 200px;
   height: 30px;
+  margin-bottom: 50px
 }
 
 .matches {
@@ -218,7 +219,7 @@ textarea, input { outline: none;
   display: inline-block;
   padding-left: 20px;
   padding-right: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 
 #matchcontainer{
