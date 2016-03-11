@@ -96,7 +96,7 @@
 }
 
 .fill {
-    margin-top: 5%;
+    margin-top: 4%;
     width: 200px;
     height: 200px;
     display:flex;
@@ -104,6 +104,17 @@
     align-items:center;
     overflow:hidden;
 }
+
+.fill {
+    margin-top: 4%;
+    width: 200px;
+    height: 200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
 .fill img {
     flex-shrink:0;
     max-width:100%;

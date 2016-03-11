@@ -56,7 +56,7 @@
   <br>
   <ul>
     <li class='matches' ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName">
-      <div class='fill'>
+      <div class='fill2'>
         <a href="/users/{{percentage.value._id}}"><img ng-src='{{percentage.value.imglink}}' ng-class="{'animated pulse': animateB}" ng-mouseover="animateB =! animateB" ng-mouseleave="animateB =! animateB"></a>
       </div>
       <br><br>
