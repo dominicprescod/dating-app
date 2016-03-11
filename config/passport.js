@@ -76,6 +76,7 @@ module.exports = function(passport) {
                 newUser.age           = req.body.age;
                 newUser.about         = req.body.about;
                 newUser.imglink       = req.body.imglink;
+                newUser.gender        = req.body.gender;
                 // save the user
                 newUser.save(function(err) {
                     if (err)
