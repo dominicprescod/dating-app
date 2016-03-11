@@ -50,6 +50,18 @@ app.controller("userShow",["$http","$routeParams", "$location", "$scope", functi
                                       value: i
                                       });
           });
+          // ==============================================
+          // get request for inbox messages...response.data would either be an object or an array?
+          $http({
+              method: "GET",
+              url: "users/"+$routeParams.id+"/board"
+          }).then(function(response){
+            controller.inbox = response.data;
+            console.log(response.data);
+          });
+          // ==============================================
+
+
         });
       });
     };
@@ -93,6 +105,17 @@ app.controller('likesController', ['$http', '$routeParams', '$location', '$scope
       console.log(response.data);
       controller.current = response.data;
       hacking();
+    });
+  };
+
+  this.addComment = function(comment){
+    $http({
+      method: "POST",
+      url: "users/"+$routeParams.id+"/comment",
+      data: comment
+    }).then(function(inbox){
+      console.log(inbox.data);
+      controller.message = inbox.data;
     });
   };
 

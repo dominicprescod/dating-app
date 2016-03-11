@@ -6,11 +6,18 @@ var express  = require('express'),
 // MODELS
 var User    = require('../models/users'),
     Like    = require('../models/likes'),
-    Message = require('../models/messages');
+    Board   = require('../models/messages'),
+    Comment = require("../models/comment");
+
+
+// Logged in User
+var signedIn = null;
+
 
 // logging out from current session
 router.get('/logout',function(req,res){
       req.logout();
+      signedIn = null; //removes signed in user data
       res.redirect('/');
 });
 
@@ -68,13 +75,16 @@ router.put('/:id', function(req, res){
 // Login testing
 router.post('/login',passport.authenticate('local-login',{
     failureRedirect: '/',}), isLoggedIn, function(req,res){
+      signedIn = req.user; //creates logged in user data
+      console.log(req.user);
         res.send(req.user);
 });
 
 // User create -- signup -- works(dom)
 router.post('/register', passport.authenticate('local-signup', {
 	failureRedirect: '/users' }), isLoggedIn, function(req, res) {
-    //success redirect goes to show page
+    signedIn = req.user; //creates logged in user data
+    //success sends json
     res.send(req.user);
 });
 
@@ -118,6 +128,76 @@ router.post('/:id', function(req, res){
 //   });
 // });
 // ==================================================
+
+// New Comment
+// ====================================================
+router.post('/:id/comment',function(req,res){
+  // creates a new comment using the schema
+    var newComment = new Comment(req.body);
+    // finds the current board using the information captured the form
+    Board.findById(newComment.parent,function(err,board){
+      // pushing to the comments element in the object and saving
+      board.comments.push(newComment);
+      board.save(function(nErr,nBoard){
+        res.send(nBoard);
+      });
+
+    });
+});
+// ====================================================
+
+// Get inbox messages or message or create inbox message
+// ======================================================================================================================
+router.get('/:id/board', isLoggedIn, function(req, res) {
+  // for user control flow within template (enables editing only on the user's own page)
+  // finding users by the id passed in the webpage
+  User.findById(req.params.id,function(err, user){
+    // if the page viewed is not the person logged in find or create an inbox message board
+    if(req.params.id != signedIn._id){
+      // finds the board that has a name of both the users combined
+        Board.findOne({$or:[{name: signedIn._id+'-'+req.params.id},{name: req.params.id+'-'+signedIn._id}]}, function(err, board){
+          if(board){//if the inbox message between two users exist it renders the page with the inbox information
+            res.send(board);
+          } else { //if the inbox messages does not exist it creates a new inbox message board between the users and renders the page
+            var newInboxMessage = new Board({name:signedIn._id+'-'+req.params.id});
+            newInboxMessage.fpal.push({
+              firstName: user.firstName,
+              lastName: user.lastName,
+              rId: user.id,
+              pic: user.pic
+            });
+            newInboxMessage.spal.push({
+              firstName:signedIn.firstName,
+              lastName: signedIn.lastName,
+              rId: signedIn._id,
+              pic: signedIn.pic
+            });
+            newInboxMessage.save(function(err, board){
+              res.send(board);
+            });
+          }
+        });
+    } else {
+      // when the current user is viewing their profile page, render their inbox with all the between them and another user
+      // the inbox message is simply a board thats named with a combination of both user's ids with a - between them
+      // this query checks all boards for the current user's in as part of the name string
+      Board.find({name: {"$regex": req.params.id, "$options": "i"}},function(err,docs){
+        // console.log(docs);
+        // rendering with that specific user's data
+        res.send(docs);
+      });
+
+    }
+      });
+});
+// ======================================================================================================================
+
+
+
+
+
+
+
 
 function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on

@@ -1,19 +1,13 @@
 var mongoose = require('mongoose');
 mongoose.set('debug',true);
 var Schema = mongoose.Schema;
+var commentSchema = require('./comment.js').schema;
 
 
 var messageSchema = new Schema({
       name: {type: String, required: true},
       date: {type: Date, default: Date.now},
-      comments: [{
-                  parent: {type: String, required: true},
-                  from_id: {type: String, required: true},
-                  from_name: {type: String, required: true},
-                  from_pic: {type: String},
-                  value: {type: String, required: true},
-                  date: {type: Date, default: Date.now}
-                }],
+      comments: [commentSchema],
       fpal:[{
             firstName: String,
             lastName: String,
