@@ -11,7 +11,7 @@
   <h4>Gender: {{use.current.gender}}</h4>
   <br>
   <h4>Info: {{use.current.about}}</h4>
-  <br><br><br><br>
+  <br><br>
   <div id='buttonWrapper'>
     <div class='a1' ng-mouseover="animate5 =! animate5" ng-mouseleave="animate5 =! animate5"><a href='/users/{{use.user._id}}'ng-class="{'animated fadeIn': animate5}">&nbsp&nbspHOME&nbsp&nbsp</a></div>
     <br>
@@ -32,7 +32,7 @@
   <!-- Shows like categories -->
     <div ng-if="use.user._id===use.current._id">
     <div class='a1' ng-click='showMe2 =! showMe2'  ng-class="{'animated fadeIn': animate8}" ng-mouseover="animate8 =! animate8" ng-mouseleave="animate8 =! animate8">UPDATE</div>
-    <section id='categories' ng-controller='likesController as likesCtrl' ng-show='showMe2' class="animated fadeIn">
+    <section ng-show='showMe2' id='categories' ng-controller='likesController as likesCtrl' class="animated fadeIn">
       <ul ng-repeat='likes in likesCtrl.likes' ng-if="likesCtrl.user._id===likesCtrl.page">
         <li class='likeslist' id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike' ng-class="{'animated fadeIn': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">{{likes.name}}</li>
       </ul>
@@ -48,16 +48,9 @@
     </section>
 </div>
 
-<!-- Shows like categories -->
-<section id='categories' ng-controller='likesController as likesCtrl'>
-  <ul ng-repeat='likes in likesCtrl.likes' ng-if="likesCtrl.user._id===likesCtrl.page">
-    <li class='likeslist' id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike' ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">{{likes.name}}</li>
-  </ul>
-</section>
-
 <!-- Shows matches with other people -->
 <section>
-  <input type="text" placeholder="filter" ng-model="searchBox">
+  <!-- <input type="text" placeholder="filter" ng-model="searchBox"> -->
   <br>
   <ul>
   <li class='matches' ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName"><a href="/users/{{percentage.value._id}}">
@@ -65,9 +58,9 @@
       <a href="/users/{{percentage.value._id}}"><img ng-src='{{percentage.value.imglink}}' ng-class="{'animated pulse': animateB}" ng-mouseover="animateB =! animateB" ng-mouseleave="animateB =! animateB"></a>
     </div>
       <br><br>
-      {{percentage.percentage | number:0}}% Match
-      First Name: {{percentage.value.firstName}}
-      Last Name: {{percentage.value.lastName}}
+      {{percentage.percentage | number:0}}% MATCH
+      <!-- First Name: {{percentage.value.firstName}}
+      Last Name: {{percentage.value.lastName}} -->
       <!-- Email: {{percentage.value.email}}
       Age: {{percentage.value.age}}
       About: {{percentage.value.about}} -->
