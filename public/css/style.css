@@ -78,7 +78,7 @@
 }
 
 .button2 {
-  margin-top: 1%;
+  margin-top: 3%;
   border: solid 1px;
   width: 120px;
   height: 20px;
@@ -235,7 +235,7 @@ textarea, input { outline: none;
     color: #18bd9b;
 }
 
-#searchbox:-ms-input-placeholder {
+searchbox:-ms-input-placeholder {
     color: #18bd9b;
 }
 
