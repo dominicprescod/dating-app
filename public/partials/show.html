@@ -2,9 +2,7 @@
 
 <!-- Shows user's information -->
 <div class='animated fadeIn' id='show'>
-  <div class='fill'>
-    <img ng-src={{use.current.imglink}} ng-class="{'animated flip': animate6}" ng-mouseover="animate6 =! animate6" ng-mouseleave="animate6 =! animate6">
-  </div>
+  <img class='fill' ng-src={{use.current.imglink}} ng-class="{'animated flip': animate6}" ng-mouseover="animate6 =! animate6" ng-mouseleave="animate6 =! animate6">
   <br><br>
   <h1>{{use.current.firstName}} {{use.current.lastName}}</h1>
   <br>
@@ -14,16 +12,40 @@
   <br>
   <h4>Info: {{use.current.about}}</h4>
   <br><br><br><br>
-  <ul ng-repeat='like in use.current.likes'>
-    <li class='likeslist' ng-click='use.deleteLike(like)' ng-if="use.user._id===use.current._id">{{like.name}}</li>
-    <li class='likeslist2' ng-if="use.user._id!=use.current._id">{{like.name}}</li>
-  </ul>
-  <br><br><br>
-  <a href='/users/{{use.user._id}}' class='a1' ng-class="{'animated flash': animate5}" ng-mouseover="animate5 =! animate5" ng-mouseleave="animate5 =! animate5">&nbsp&nbspHOME&nbsp&nbsp</a>
-  <br><br><br>
-  <div ng-controller='bodyController as body'>
-     <a href="/" class='a1 a2' ng-click="body.logout()" ng-class="{'animated flash': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">LOGOUT</a>
+  <div id='buttonWrapper'>
+    <div class='a1' ng-mouseover="animate5 =! animate5" ng-mouseleave="animate5 =! animate5"><a href='/users/{{use.user._id}}'ng-class="{'animated fadeIn': animate5}">&nbsp&nbspHOME&nbsp&nbsp</a></div>
+    <br>
+    <div ng-controller='bodyController as body'>
+      <div class='a1' ng-class="{'animated fadeIn': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate"><a href="/" ng-click="body.logout()">LOGOUT</a></div>
+    </div>
+    <br>
+    <div ng-if="use.user._id===use.current._id">
+    <div class='a1' ng-click='showMe =! showMe;'  ng-class="{'animated fadeIn': animate7}" ng-mouseover="animate7 =! animate7" ng-mouseleave="animate7 =! animate7">DELETE</div>
+      <section class='animated fadeIn ulWrapper' ng-show='showMe'>
+        <ul ng-repeat='like in use.current.likes'>
+          <li class='likeslist' ng-click='use.deleteLike(like)' ng-if="use.user._id===use.current._id" id={{like.name}} ng-class="{'animated fadeIn': animate1}" ng-mouseover="animate1 =! animate1" ng-mouseleave="animate1 =! animate1">{{like.name}}</li>
+        </ul>
+      </section>
+    </div>
+    <!-- shows br if user is true -->
+    <br ng-if="use.user._id===use.current._id">
+  <!-- Shows like categories -->
+    <div ng-if="use.user._id===use.current._id">
+    <div class='a1' ng-click='showMe2 =! showMe2'  ng-class="{'animated fadeIn': animate8}" ng-mouseover="animate8 =! animate8" ng-mouseleave="animate8 =! animate8">UPDATE</div>
+    <section id='categories' ng-controller='likesController as likesCtrl' ng-show='showMe2' class="animated fadeIn">
+      <ul ng-repeat='likes in likesCtrl.likes' ng-if="likesCtrl.user._id===likesCtrl.page">
+        <li class='likeslist' id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike' ng-class="{'animated fadeIn': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">{{likes.name}}</li>
+      </ul>
+    </section>
   </div>
+</div>
+<div ng-if="use.user._id!=use.current._id">
+  <div class='a1' ng-click='showMe =! showMe;'  ng-class="{'animated fadeIn': animate7}" ng-mouseover="animate7 =! animate7" ng-mouseleave="animate7 =! animate7">SHOW</div>
+    <section class='animated fadeIn ulWrapper' ng-show='showMe'>
+      <ul ng-repeat='like in use.current.likes'>
+        <li class='likeslist2' id={{like.name}}>{{like.name}}</li>
+      </ul>
+    </section>
 </div>
 
 <!-- Shows like categories -->
@@ -38,9 +60,9 @@
   <input type="text" placeholder="filter" ng-model="searchBox">
   <br>
   <ul>
--    <li class='matches' ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName"><a href="/users/{{percentage.value._id}}">
+  <li class='matches' ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName"><a href="/users/{{percentage.value._id}}">
   <div class='fill2'>
-      <a href="/users/{{percentage.value._id}}"><img ng-src='{{percentage.value.imglink}}' ng-class="{'animated pulse': animateB}" ng-mouseover="animateB =! animateB" ng-mouseleave="animateB =! animateB"></a>		          <a href="/users/{{percentage.value._id}}"><img ng-src='{{percentage.value.imglink}}' ng-class="{'animated pulse': animateB}" ng-mouseover="animateB =! animateB" ng-mouseleave="animateB =! animateB"></a>
+      <a href="/users/{{percentage.value._id}}"><img ng-src='{{percentage.value.imglink}}' ng-class="{'animated pulse': animateB}" ng-mouseover="animateB =! animateB" ng-mouseleave="animateB =! animateB"></a>
     </div>
       <br><br>
       {{percentage.percentage | number:0}}% Match
