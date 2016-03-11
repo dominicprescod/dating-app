@@ -15,7 +15,7 @@
   <h4>Info: {{use.current.about}}</h4>
   <br><br><br><br>
   <div id='buttonWrapper'>
-    <div class='a1' ng-mouseover="animate5 =! animate5" ng-mouseleave="animate5 =! animate5"><a href='/users/{{use.user._id}}'ng-class="{'animated fadeIn': animate5}">&nbsp&nbspHOME&nbsp&nbsp</a></div>
+    <div class='a1' ng-class="{'animated fadeIn': animate5}" ng-mouseover="animate5 =! animate5" ng-mouseleave="animate5 =! animate5"><a href='/users/{{use.user._id}}'>&nbsp&nbspHOME&nbsp&nbsp</a></div>
     <br>
     <div ng-controller='bodyController as body'>
       <div class='a1' ng-class="{'animated fadeIn': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate"><a href="/" ng-click="body.logout()">LOGOUT</a></div>
