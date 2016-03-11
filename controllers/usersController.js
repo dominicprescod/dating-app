@@ -10,8 +10,6 @@ var User    = require('../models/users'),
 
 // logging out from current session
 router.get('/logout',function(req,res){
-      // console.log("user has been logged out");
-      // console.log(req.user);
       req.logout();
       res.redirect('/');
 });
@@ -26,13 +24,12 @@ router.get('/', function(req, res) {
  // Finding according to similar LIKES
  router.post("/:id/bylikes",function(req,res){
    var cat = [];
-  //  console.log("hey");
+   //stores likes "strings" of the current user to check the database for users that like the same as current user
    for(var i = 0; i < req.body.length; i++){
      cat.push(req.body[i].name);
    }
-  //  console.log(cat+" this is cat array");
+  //  searches the database for users that like the same likes as the current user
    User.find({ likes: { '$elemMatch': { name: {$in:cat }} } },function(err,data){
-    //  console.log(data);
         res.send(data);
    });
  });
@@ -47,8 +44,6 @@ router.get('/likes', function(req, res){
 
 // POST - PUT
 router.put('/:id', function(req, res){
-  // console.log(req.user.likes)
-  // console.log(req.body+" this is the like object");
   User.findById(req.params.id, function(err, user){
     // setting a variable of false to test if user already has the like element already - false it does not - true it does
     var hasLike = false;
@@ -61,9 +56,10 @@ router.put('/:id', function(req, res){
     if(hasLike){
       res.send(user);
     } else {
+      // pushes new like to users likes array and saves the updated user
       user.likes.push(req.body);
       user.save(function(err,userWithLikes){
-      res.send(userWithLikes);
+      res.send(userWithLikes); //sends the updated json data
       });
     }
   });
@@ -89,20 +85,19 @@ router.get('/:id/json', isLoggedIn, function(req,res){
     });
 });
 
-// Getting user likesArray
+// Removing likes from the user
 router.post('/:id', function(req, res){
-  // console.log(req.body);
-  // console.log('======================================');
   User.findById(req.params.id, function(err, data){
-    // console.log(data);
     data.likes.forEach(function(i){
+      // if the user has a like similar to the data sent
       if(i.name === req.body.name){
-        // console.log(i);
+        // logs the index of the like
         var num = data.likes.indexOf(i);
-        // console.log(num);
+        // removes from users likes
         data.likes.splice(num,1);
       }
     });
+    // saves the changes and sends the updated user's data
     data.save(function(err, sdata){
     res.send(sdata);
     });

@@ -103,32 +103,29 @@ app.controller('likesController', ['$http', '$routeParams', '$location', '$scope
 //End of likes controller
 }]);
 
+// ==============================================================================================================================
+// setting up the routes with ng-route
 app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
   $locationProvider.html5Mode({enabled:true});
+  // home page route - shows login and register links
   $routeProvider.when('/',{
     templateUrl: "partials/login.html",
     controller: "bodyController",
     controllerAs: "body"
-  });
-}]);
-
-app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
-  $locationProvider.html5Mode({enabled:true});
-  $routeProvider.when('/users/:id',{
+    // users show gives the user profile and shows their matches
+  }).when('/users/:id',{
     templateUrl: "partials/show.html",
     controller: "userShow",
     controllerAs: "use"
-  });
-}]);
-
-app.config(["$routeProvider","$locationProvider", function($routeProvider,$locationProvider){
-  $locationProvider.html5Mode({enabled:true});
-  $routeProvider.when('/users/:id/new',{
+    // route for new users to add likes to their profile before usershow
+  }).when('/users/:id/new',{
     templateUrl: "partials/categories.html",
     controller: "likesController",
     controllerAs: "likesCtrl"
   });
 }]);
+// ==============================================================================================================================
+
 
 // Testing the login with passport & angular
 app.controller('bodyController',["$http", '$location', '$routeParams', function($http, $location, $routeParams){
@@ -136,12 +133,13 @@ app.controller('bodyController',["$http", '$location', '$routeParams', function(
   this.id = null;
   this.newUser = {};
   this.signIn = {};
-
+// logging out the user
   this.logout = function(){
     $http({
       method:"GET",
       url: "/users/logout"
     }).then(function(response){
+      // clears the "signedIn" user for the next login session
       signedIn = {};
     });
   };
@@ -152,6 +150,7 @@ app.controller('bodyController',["$http", '$location', '$routeParams', function(
         url: "/users/login",
         data: this.signIn
       }).then(function(response){
+        // logs response from the server after passport check of the verified user that's logged in so that we cand restrict routes based on the logged in user
         signedIn = response.data;
         id = response.data._id;
         controller.signIn = {};
@@ -171,6 +170,7 @@ app.controller('bodyController',["$http", '$location', '$routeParams', function(
       url: "/users/register",
       data: this.newUser
     }).then(function(response){
+      // provides the new user details when registered with passport
       signedIn = response.data;
       // console.log(response.data);
       id = response.data._id;
