@@ -95,22 +95,19 @@
   border-color: #949494;
 }
 
-.avatar {
-  margin-top: 5%;
-  width: 200px;
-  height: 200px;
-  vertical-align: middle;
-  border: solid 2px;
-  border-radius: 100%;
-  border-color: white;
+.fill {
+    margin-top: 5%;
+    width: 200px;
+    height: 200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
 }
-
-.avatars {
-  width: 100px;
-  height: 100px;
-  border: solid 1px grey;
-  border-radius: 100%;
-  margin-top: 80px;
+.fill img {
+    flex-shrink:0;
+    max-width:100%;
+    max-height:100%;
 }
 
 #categories {

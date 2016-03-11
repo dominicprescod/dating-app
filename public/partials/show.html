@@ -2,7 +2,9 @@
 
 <!-- Shows user's information -->
 <div class='animated fadeIn' id='show'>
-  <img class='avatar' ng-src={{use.current.imglink}} ng-class="{'animated flip': animate6}" ng-mouseover="animate6 =! animate6" ng-mouseleave="animate6 =! animate6">
+  <div class='fill'>
+    <img ng-src={{use.current.imglink}} ng-class="{'animated flip': animate6}" ng-mouseover="animate6 =! animate6" ng-mouseleave="animate6 =! animate6">
+  </div>
   <br><br>
   <h1>{{use.current.firstName}} {{use.current.lastName}}</h1>
   <br>
@@ -54,7 +56,9 @@
   <br>
   <ul>
     <li class='matches' ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName">
-      <a href="/users/{{percentage.value._id}}"><img class='avatars' ng-src='{{percentage.value.imglink}}'></a>
+      <div class='fill'>
+        <a href="/users/{{percentage.value._id}}"><img ng-src='{{percentage.value.imglink}}' ng-class="{'animated pulse': animateB}" ng-mouseover="animateB =! animateB" ng-mouseleave="animateB =! animateB"></a>
+      </div>
       <br><br>
       {{percentage.percentage | number:0}}&nbsp%&nbsp&nbspMATCH
       <!-- First Name: {{percentage.value.firstName}}
