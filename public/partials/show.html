@@ -52,14 +52,13 @@
 <!-- Shows matches with other people -->
 <br><br><br><br>
 <section id='matchcontainer'>
-  <input type="text" id='searchbox' placeholder="SEARCH HERE" ng-model="searchBox">
+  
   <br>
   <ul>
-    <li class="likeslist" ng-repeat="percentage in use.sorted.sort() | orderBy: '-percentage' | filter: searchBox" ng-if="percentage.value.firstName != use.current.firstName">
+    <li class="likeslist" ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName">
       <div class='fill2'>
         <a href="/users/{{percentage.value._id}}"><img ng-src='{{percentage.value.imglink}}' ng-class="{'animated pulse': animateB}" ng-mouseover="animateB =! animateB" ng-mouseleave="animateB =! animateB"></a>
       </div>
-      <br><br>
       {{percentage.percentage | number:0}}&nbsp%&nbsp&nbspMATCH
       <!-- First Name: {{percentage.value.firstName}}
       Last Name: {{percentage.value.lastName}}
