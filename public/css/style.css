@@ -95,6 +95,7 @@
   border-color: #949494;
 }
 
+
 .avatar {
   margin-top: 5%;
   width: 200px;
@@ -111,6 +112,31 @@
   border: solid 1px grey;
   border-radius: 100%;
   margin-top: 80px;
+
+.fill {
+    margin-top: 4%;
+    width: 300px;
+    height: 300px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.fill2 {
+    margin-top: 100px;
+    width: 100px;
+    height: 100px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.fill img {
+    flex-shrink:0;
+    max-width:100%;
+    max-height:100%;
 }
 
 #categories {
@@ -212,6 +238,24 @@ textarea, input { outline: none;
   width: 200px;
   height: 30px;
   margin-bottom: 50px
+  border-color: #18bd9b;
+  border-style: solid;
+}
+
+#searchbox::-webkit-input-placeholder {
+    color: #18bd9b;
+}
+
+#searchbox:-moz-placeholder {
+    color: #18bd9b;
+}
+
+#searchbox::-moz-placeholder {
+    color: #18bd9b;
+}
+
+searchbox:-ms-input-placeholder {
+    color: #18bd9b;
 }
 
 .matches {
@@ -220,6 +264,7 @@ textarea, input { outline: none;
   padding-left: 20px;
   padding-right: 20px;
   margin-bottom: 20px;
+
 }
 
 #matchcontainer{

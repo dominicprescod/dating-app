@@ -108,17 +108,7 @@ router.post('/:id', function(req, res){
 // trying to add a hash to the users passwords
 // - WORKED all user password from seed data are now hashed
 // uncomment to hash new seed data
-// ==================================================
-router.get('/hash',function(req,res){
-  User.find(function(err,data){
-      data.forEach(function(i){
-        i.password = i.generateHash(i.password);
-        i.save(function(){});
-      });
-  });
-});
-// ==================================================
-
+// =================================================
 
 // adding likes to the users database
 router.get("/autolikes",function(req,res){
@@ -135,6 +125,16 @@ router.get("/autolikes",function(req,res){
     res.send(users);
   });
 });
+
+// router.get('/hash',function(req,res){
+//   User.find(function(err,data){
+//       data.forEach(function(i){
+//         i.password = i.generateHash(i.password);
+//         i.save(function(){});
+//       });
+//   });
+// });
+// ==================================================
 
 function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on

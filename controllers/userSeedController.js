@@ -110,6 +110,8 @@ var newUser = [{"imglink":"http://dummyimage.com/300x300.png/ff4444/ffffff","gen
 {"imglink":"http://dummyimage.com/300x300.png/cc0000/ffffff","gender":"Female","firstName":"Cheryl","lastName":"Fowler","email":"cfowler2w@so-net.ne.jp","password":"password","age":42,"about":"imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus"},
 {"imglink":"http://dummyimage.com/300x300.png/ff4444/ffffff","gender":"Male","firstName":"Aaron","lastName":"Jenkins","email":"ajenkins2x@tumblr.com","password":"password","age":51,"about":"ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla"}];
 
+var newUser = [];
+
 // SEEDING
 router.get('/', function(req, res){
   User.create(newUser, function(err){
