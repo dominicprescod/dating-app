@@ -32,7 +32,6 @@
   <!-- Shows like categories -->
     <div ng-if="use.user._id===use.current._id">
     <div class='a1' ng-click='showMe2 =! showMe2'  ng-class="{'animated fadeIn': animate8}" ng-mouseover="animate8 =! animate8" ng-mouseleave="animate8 =! animate8">UPDATE</div>
-    <section id='categories' ng-controller='likesController as likesCtrl' ng-show='showMe2' class="animated fadeIn">
     <section ng-show='showMe2' id='categories' ng-controller='likesController as likesCtrl' class="animated fadeIn">
       <ul ng-repeat='likes in likesCtrl.likes' ng-if="likesCtrl.user._id===likesCtrl.page">
         <li class='likeslist' id='{{likes.name}}' ng-click="likesCtrl.addLike(likes); hideLike = ! hideLike" ng-hide='hideLike' ng-class="{'animated fadeIn': animate}" ng-mouseover="animate =! animate" ng-mouseleave="animate =! animate">{{likes.name}}</li>
@@ -48,20 +47,6 @@
       </ul>
     </section>
 </div>
-<!-- Shows matches with other people -->
-<br><br><br><br>
-<section id='matchcontainer'>
-  <input type="text" id='searchbox' placeholder="SEARCH HERE!" ng-model="searchBox">
-  <br>
-  <ul>
-    <li class='matches' ng-repeat="percentage in use.sorted | orderBy: '-percentage'" ng-if="percentage.value.firstName != use.current.firstName">
-      <a href="/users/{{percentage.value._id}}"><img class='avatars' ng-src='{{percentage.value.imglink}}'></a>
-      <br><br>
-      {{percentage.percentage | number:0}}&nbsp%&nbsp&nbspMATCH
-      <!-- First Name: {{percentage.value.firstName}}
-      Last Name: {{percentage.value.lastName}}
-      Email: {{percentage.value.email}}
-
 
 <!-- Shows matches with other people -->
 <section>
@@ -76,7 +61,6 @@
       <!-- First Name: {{percentage.value.firstName}}
       Last Name: {{percentage.value.lastName}} -->
       <!-- Email: {{percentage.value.email}}
-
       Age: {{percentage.value.age}}
       About: {{percentage.value.about}} -->
     </li>

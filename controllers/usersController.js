@@ -108,24 +108,7 @@ router.post('/:id', function(req, res){
 // trying to add a hash to the users passwords
 // - WORKED all user password from seed data are now hashed
 // uncomment to hash new seed data
-// =================================================
-
-// adding likes to the users database
-router.get("/autolikes",function(req,res){
-  User.find(function(err,users){
-    Like.find(function(err,likes){
-      users.forEach(function(i){
-        var num = Math.floor(Math.random()*18);
-        for(var k = 0; k < num; k++){
-          i.likes.push(likes[k]);
-        }
-        i.save(function(){});
-      });
-    });
-    res.send(users);
-  });
-});
-
+// ==================================================
 // router.get('/hash',function(req,res){
 //   User.find(function(err,data){
 //       data.forEach(function(i){
